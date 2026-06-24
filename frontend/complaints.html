@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Complaint Management | Smart Campus</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html"><span class="brand-mark">SC</span><span class="brand-text"><strong>Smart Campus</strong><span>Complaint & Resource System</span></span></a>
+    <div class="header-actions"><button class="theme-toggle" type="button">Light</button><button class="nav-toggle" aria-label="Open navigation"><span></span><span></span><span></span></button></div>
+    <nav class="main-nav">
+      <a href="index.html">Home</a><a href="auth.html">Login</a><a class="active" href="complaints.html">Complaints</a><a href="resources.html">Resources</a><a href="dashboard.html">Dashboard</a><a href="search.html">Search</a>
+    </nav>
+  </header>
+
+  <main class="page-shell">
+    <section class="page-title">
+      <h1>Complaint Management</h1>
+      <p>Submit complaints, choose category, set priority, generate complaint ID and track complaint history.</p>
+    </section>
+
+    <section class="grid-2">
+      <form class="panel form-grid js-complaint-form">
+        <h2>Submit Complaint</h2>
+        <div class="field"><label for="title">Complaint Title</label><input id="title" placeholder="Wi-Fi not working in lab" required></div>
+        <div class="field"><label for="category">Category</label><select id="category"><option>IT</option><option>Hostel</option><option>Library</option><option>Classroom</option><option>Transport</option></select></div>
+        <div class="field"><label for="priority">Priority</label><select id="priority"><option>Low</option><option>Medium</option><option>High</option></select></div>
+        <div class="field"><label for="details">Details</label><textarea id="details" placeholder="Write complaint details..." required></textarea></div>
+        <button class="btn" type="submit">Generate Complaint ID</button>
+      </form>
+
+      <aside class="panel">
+        <h2>Complaint History</h2>
+        <div class="list" id="complaintList">
+          <div class="list-item"><div><strong>CMP-2301</strong><br><span>Projector issue in Room A-204</span></div><span class="tag gold">Pending</span></div>
+          <div class="list-item"><div><strong>CMP-2286</strong><br><span>Library AC maintenance</span></div><span class="tag green">Resolved</span></div>
+          <div class="list-item"><div><strong>CMP-2278</strong><br><span>Hostel water supply delay</span></div><span class="tag pink">High</span></div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="content-band plain">
+      <div class="band-inner wide-copy">
+        <h2>Complaint Life Cycle</h2>
+        <p>Every complaint moves through a simple visible process, so students know what is happening and admins know what to do next.</p>
+        <div class="timeline">
+          <div class="timeline-item"><time>Step 1</time><div><h3>Submitted</h3><p>Student enters category, priority, title and full details. The system creates a complaint ID.</p></div></div>
+          <div class="timeline-item"><time>Step 2</time><div><h3>Assigned</h3><p>Admin checks the category and sends the task to the correct department or staff member.</p></div></div>
+          <div class="timeline-item"><time>Step 3</time><div><h3>In Progress</h3><p>Status updates are visible to the student and important delays can be escalated.</p></div></div>
+          <div class="timeline-item"><time>Step 4</time><div><h3>Resolved</h3><p>The complaint is closed after solution confirmation and can be used in monthly reports.</p></div></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">Complaint status updates and important announcements.</footer>
+  <div class="toast" id="toast"></div>
+  <script src="script.js"></script>
+</body>
+</html>

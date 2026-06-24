@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Authentication | Smart Campus</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html"><span class="brand-mark">SC</span><span class="brand-text"><strong>Smart Campus</strong><span>Complaint & Resource System</span></span></a>
+    <div class="header-actions"><button class="theme-toggle" type="button">Light</button><button class="nav-toggle" aria-label="Open navigation"><span></span><span></span><span></span></button></div>
+    <nav class="main-nav">
+      <a href="index.html">Home</a><a class="active" href="auth.html">Login</a><a href="complaints.html">Complaints</a><a href="resources.html">Resources</a><a href="dashboard.html">Dashboard</a><a href="search.html">Search</a>
+    </nav>
+  </header>
+
+  <main class="page-shell">
+    <section class="page-title">
+      <h1>User Authentication</h1>
+      <p>Student registration, student login, admin login and account recovery in one secure access page.</p>
+    </section>
+
+    <section class="grid-2">
+      <form class="panel form-grid js-demo-form">
+        <h2>Student Login</h2>
+        <div class="field"><label for="studentId">Student ID</label><input id="studentId" placeholder="SC-2026-001" required></div>
+        <div class="field"><label for="studentPass">Password</label><input id="studentPass" type="password" placeholder="Enter password" required></div>
+        <button class="btn" type="submit">Login</button>
+        <button class="btn secondary" type="button" data-toast="Password reset link sent to registered email.">Forgot Password</button>
+      </form>
+
+      <form class="panel form-grid js-demo-form">
+        <h2>Student Registration</h2>
+        <div class="field"><label for="name">Full Name</label><input id="name" placeholder="Enter full name" required></div>
+        <div class="field"><label for="email">Email</label><input id="email" type="email" placeholder="student@campus.edu" required></div>
+        <div class="field"><label for="dept">Department</label><select id="dept"><option>Computer Science</option><option>Mechanical</option><option>Electrical</option><option>Civil</option></select></div>
+        <button class="btn" type="submit">Create Account</button>
+      </form>
+    </section>
+
+    <section class="content-band plain">
+      <div class="band-inner split-section">
+        <div class="panel flat">
+          <h2>Role Based Access</h2>
+          <p>Student login opens complaint history, resource booking and personal notifications. Admin login opens assignment, approval, statistics and resource management controls.</p>
+        </div>
+        <div class="step-list">
+          <div class="step-line"><span class="step-num">S</span><div><strong>Student</strong><br><span>Create complaints, track ID, request resources and receive alerts.</span></div></div>
+          <div class="step-line"><span class="step-num">A</span><div><strong>Admin</strong><br><span>Update status, approve bookings, assign teams and review reports.</span></div></div>
+          <div class="step-line"><span class="step-num">M</span><div><strong>Management</strong><br><span>View trends, repeated issues and campus performance summaries.</span></div></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">Secure login for students and admin.</footer>
+  <div class="toast" id="toast"></div>
+  <script src="script.js"></script>
+</body>
+</html>

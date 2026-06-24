@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resource Management | Smart Campus</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html"><span class="brand-mark">SC</span><span class="brand-text"><strong>Smart Campus</strong><span>Complaint & Resource System</span></span></a>
+    <div class="header-actions"><button class="theme-toggle" type="button">Light</button><button class="nav-toggle" aria-label="Open navigation"><span></span><span></span><span></span></button></div>
+    <nav class="main-nav">
+      <a href="index.html">Home</a><a href="auth.html">Login</a><a href="complaints.html">Complaints</a><a class="active" href="resources.html">Resources</a><a href="dashboard.html">Dashboard</a><a href="search.html">Search</a>
+    </nav>
+  </header>
+
+  <main class="page-shell">
+    <section class="page-title">
+      <h1>Resource Management</h1>
+      <p>Book classrooms, labs, equipment and projectors with availability check and approval flow.</p>
+    </section>
+
+    <section class="resource-grid">
+      <article class="resource-card"><span class="icon-badge">CL</span><h3>Smart Classroom</h3><p>Available slots: 8</p><div class="progress"><span style="width: 78%"></span></div></article>
+      <article class="resource-card"><span class="icon-badge">LB</span><h3>Computer Lab</h3><p>Available slots: 4</p><div class="progress"><span style="width: 52%"></span></div></article>
+      <article class="resource-card"><span class="icon-badge">PR</span><h3>Projector Kit</h3><p>Available units: 11</p><div class="progress"><span style="width: 86%"></span></div></article>
+    </section>
+
+    <section class="grid-2" style="margin-top: 20px;">
+      <form class="panel form-grid js-demo-form">
+        <h2>Book Resource</h2>
+        <div class="field"><label for="resource">Resource</label><select id="resource"><option>Smart Classroom</option><option>Computer Lab</option><option>Projector Kit</option><option>Seminar Hall</option></select></div>
+        <div class="field"><label for="date">Date</label><input id="date" type="date" required></div>
+        <div class="field"><label for="time">Time Slot</label><select id="time"><option>09:00 AM - 10:00 AM</option><option>11:00 AM - 12:00 PM</option><option>02:00 PM - 03:00 PM</option><option>04:00 PM - 05:00 PM</option></select></div>
+        <button class="btn" type="submit">Request Booking</button>
+      </form>
+
+      <aside class="panel">
+        <h2>Approval Queue</h2>
+        <div class="list">
+          <div class="list-item"><div><strong>Seminar Hall</strong><br><span>Tomorrow, 11:00 AM</span></div><span class="tag gold">Review</span></div>
+          <div class="list-item"><div><strong>Computer Lab</strong><br><span>Monday, 02:00 PM</span></div><span class="tag green">Approved</span></div>
+          <div class="list-item"><div><strong>Projector Kit</strong><br><span>Friday, 09:00 AM</span></div><span class="tag pink">Returned</span></div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="content-band plain">
+      <div class="band-inner split-section">
+        <div>
+          <h2>Booking Rules</h2>
+          <p>Resource management works best when availability, purpose and approval are clear. These rules keep classrooms, labs and equipment fair for all departments.</p>
+        </div>
+        <div class="link-list">
+          <button data-toast="Availability is checked before the request goes to admin.">Check availability <span>View</span></button>
+          <button data-toast="Repeated clashes can be solved through priority and department rules.">Avoid time clashes <span>View</span></button>
+          <button data-toast="Approved resources appear immediately in the student dashboard.">Approval notification <span>View</span></button>
+          <button data-toast="Usage reports help admins plan future resources.">Usage report <span>View</span></button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">Resource booking approval and rejection updates.</footer>
+  <div class="toast" id="toast"></div>
+  <script src="script.js"></script>
+</body>
+</html>

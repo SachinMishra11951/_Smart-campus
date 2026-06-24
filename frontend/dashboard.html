@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard | Smart Campus Complaint & Resources Management System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html"><span class="brand-mark">SC</span><span class="brand-text"><strong>Smart Campus </strong><span>Complaint & Resource System</span></span></a>
+    <div class="header-actions"><button class="theme-toggle" type="button">Light</button><button class="nav-toggle" aria-label="Open navigation"><span></span><span></span><span></span></button></div>
+    <nav class="main-nav">
+      <a href="index.html">Home</a><a href="auth.html">Login</a><a href="complaints.html">Complaints</a><a href="resources.html">Resources</a><a class="active" href="dashboard.html">Dashboard</a><a href="search.html">Search</a>
+    </nav>
+  </header>
+
+  <main class="page-shell">
+    <section class="page-title">
+      <h1>Dashboard</h1>
+      <p>Student and admin views for submitted complaints, resource requests, booking status and campus statistics.</p>
+    </section>
+
+    <section class="stats">
+      <div class="stat-card"><span>Total Complaints</span><strong>248</strong></div>
+      <div class="stat-card"><span>Resolved</span><strong>191</strong></div>
+      <div class="stat-card"><span>Bookings</span><strong>76</strong></div>
+      <div class="stat-card"><span>Avg. Response</span><strong>18h</strong></div>
+    </section>
+
+    <section class="panel">
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="student">Student Dashboard</button>
+        <button class="tab-btn" data-tab="admin">Admin Dashboard</button>
+      </div>
+
+      <div class="tab-panel" id="student">
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>ID</th><th>Type</th><th>Subject</th><th>Status</th><th>Date</th></tr></thead>
+            <tbody>
+              <tr><td>CMP-2301</td><td>Complaint</td><td>Projector issue</td><td><span class="tag gold">Pending</span></td><td>20 Jun</td></tr>
+              <tr><td>RES-1182</td><td>Booking</td><td>Computer Lab</td><td><span class="tag green">Approved</span></td><td>21 Jun</td></tr>
+              <tr><td>CMP-2286</td><td>Complaint</td><td>Library AC</td><td><span class="tag green">Resolved</span></td><td>18 Jun</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="admin" hidden>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Task</th><th>Department</th><th>Priority</th><th>Assigned To</th><th>Action</th></tr></thead>
+            <tbody>
+              <tr><td>Wi-Fi outage</td><td>IT</td><td><span class="tag pink">High</span></td><td>Network Team</td><td>Update</td></tr>
+              <tr><td>Seminar hall request</td><td>Admin</td><td><span class="tag gold">Medium</span></td><td>Office Desk</td><td>Approve</td></tr>
+              <tr><td>Classroom lights</td><td>Maintenance</td><td><span class="tag">Low</span></td><td>Repair Team</td><td>Assign</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-band plain">
+      <div class="band-inner split-section">
+        <div>
+          <h2>What Admin Can Improve</h2>
+          <p>The dashboard is not only for counting complaints. It helps the campus find repeated issues, slow departments, busy rooms and resource gaps.</p>
+        </div>
+        <div class="metric-row">
+          <div class="metric"><strong>57</strong><span>open tasks</span></div>
+          <div class="metric"><strong>14</strong><span>high priority</span></div>
+          <div class="metric"><strong>22</strong><span>room requests</span></div>
+          <div class="metric"><strong>91%</strong><span>satisfaction</span></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">Data driven decisions for smart insights and better outcomes.</footer>
+  <div class="toast" id="toast"></div>
+  <script src="script.js"></script>
+</body>
+</html>

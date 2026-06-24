@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Campus Complaint & Resource Management System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">SC</span>
+      <span class="brand-text"><strong>Smart Campus</strong><span>Complaint & Resource System</span></span>
+    </a>
+    <div class="header-actions">
+      <button class="theme-toggle" type="button">Switch to Light</button>
+      <button class="nav-toggle" aria-label="Open navigation"><span></span><span></span><span></span></button>
+    </div>
+    <nav class="main-nav">
+      <a class="active" href="index.html">Home</a>
+      <a href="auth.html">Login</a>
+      <a href="complaints.html">Complaints</a>
+      <a href="resources.html">Resources</a>
+
+      <a href="dashboard.html">Dashboard</a>
+      <a href="search.html">Search</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="welcome-mascot">
+          <div class="mascot">
+            <div class="head"></div>
+            <div class="body"></div>
+            <div class="arms">🙏</div>
+            <div class="legs"></div>
+          </div>
+
+          <div class="speech">
+            Welcome!
+          </div>
+        </div>
+        <h1 style="color: white !important; opacity: 1 !important; visibility: visible !important;">Smart Campus
+          <br><span class="gradient-text">Complaint &amp; Resource Management System</span>
+        </h1>
+        <p>A smart solution for a better campus where complaints, bookings, approvals, alerts and dashboards work
+          together in one clean digital system.</p>
+        <div class="hero-actions">
+          <a class="btn" href="complaints.html">Submit Complaint</a>
+          <a class="btn secondary" href="resources.html">Book Resource</a>
+        </div>
+      </div>
+      <svg class="campus-skyline" viewBox="0 0 1200 220" aria-hidden="true">
+        <path fill="#06132f"
+          d="M0 170h80v-70h100v70h45V82h120v88h60v-52h90v52h52V60h150v110h42V95h120v75h55v-45h92v45h194v50H0z" />
+        <path fill="none" stroke="#52e6ff" stroke-width="2" opacity=".45"
+          d="M0 170h80v-70h100v70h45V82h120v88h60v-52h90v52h52V60h150v110h42V95h120v75h55v-45h92v45h194" />
+        <g fill="#ffc34d" opacity=".8">
+          <rect x="105" y="122" width="12" height="16" />
+          <rect x="145" y="122" width="12" height="16" />
+          <rect x="258" y="105" width="12" height="16" />
+          <rect x="304" y="105" width="12" height="16" />
+          <rect x="575" y="86" width="14" height="18" />
+          <rect x="638" y="86" width="14" height="18" />
+          <rect x="785" y="119" width="12" height="16" />
+          <rect x="833" y="119" width="12" height="16" />
+        </g>
+      </svg>
+    </section>
+
+    <section class="feature-grid" aria-label="System modules">
+      <article class="feature-card" style="--accent: var(--blue)">
+        <span class="number">1</span>
+        <h3>User Authentication</h3>
+        <div class="big-icon">
+          <svg width="90" height="90" viewBox="0 0 90 90">
+            <path fill="none" stroke="currentColor" stroke-width="5"
+              d="M45 8l30 12v22c0 20-12 32-30 40C27 74 15 62 15 42V20z" />
+            <circle cx="45" cy="36" r="10" fill="currentColor" />
+            <path fill="none" stroke="currentColor" stroke-width="5" d="M25 65c4-12 36-12 40 0" />
+          </svg>
+        </div>
+        <ul>
+          <li>Student Registration</li>
+          <li>Student Login</li>
+          <li>Admin Login</li>
+          <li>Forgot Password</li>
+        </ul>
+      </article>
+      <article class="feature-card" style="--accent: var(--green)">
+        <span class="number">2</span>
+        <h3>Complaint Management</h3>
+        <div class="big-icon">
+          <svg width="90" height="90" viewBox="0 0 90 90">
+            <path fill="none" stroke="currentColor" stroke-width="5" d="M24 18h42v60H24z" />
+            <path fill="currentColor" d="M36 13h18v12H36z" />
+            <path fill="none" stroke="currentColor" stroke-width="5"
+              d="M33 38h8m-8 14h8m-8 14h8m10-28h17m-17 14h17m-17 14h17" />
+          </svg>
+        </div>
+        <ul>
+          <li>Submit complaint</li>
+          <li>Choose category</li>
+          <li>Select priority</li>
+          <li>Track status</li>
+        </ul>
+      </article>
+      <article class="feature-card" style="--accent: var(--violet)">
+        <span class="number">3</span>
+        <h3>Resource Management</h3>
+        <div class="big-icon">
+          <svg width="90" height="90" viewBox="0 0 90 90">
+            <rect x="16" y="22" width="58" height="52" rx="6" fill="none" stroke="currentColor" stroke-width="5" />
+            <path stroke="currentColor" stroke-width="5" d="M28 12v18M62 12v18M16 40h58" />
+            <path fill="currentColor" d="M28 50h10v10H28zm24 0h10v10H52z" />
+          </svg>
+        </div>
+        <ul>
+          <li>Book classroom</li>
+          <li>Book lab</li>
+          <li>Check availability</li>
+          <li>Approval workflow</li>
+        </ul>
+      </article>
+      <article class="feature-card" style="--accent: var(--gold)">
+        <span class="number">4</span>
+        <h3>Dashboard</h3>
+        <div class="big-icon">
+          <svg width="90" height="90" viewBox="0 0 90 90">
+            <rect x="10" y="16" width="70" height="54" rx="6" fill="none" stroke="currentColor" stroke-width="5" />
+            <path stroke="currentColor" stroke-width="5" d="M24 58V42m16 16V30m16 28V38m16-10h-8M72 42h-8M72 56h-8" />
+          </svg>
+        </div>
+        <ul>
+          <li>Student dashboard</li>
+          <li>Admin dashboard</li>
+          <li>Statistics</li>
+          <li>Status updates</li>
+        </ul>
+      </article>
+      <article class="feature-card" style="--accent: var(--cyan)">
+        <span class="number">5</span>
+        <h3>Search & Filter</h3>
+        <div class="big-icon">
+          <svg width="90" height="90" viewBox="0 0 90 90">
+            <circle cx="38" cy="38" r="24" fill="none" stroke="currentColor" stroke-width="6" />
+            <path stroke="currentColor" stroke-width="7" d="M56 56l22 22" />
+          </svg>
+        </div>
+        <ul>
+          <li>Search by ID</li>
+          <li>Filter by category</li>
+          <li>Filter by status</li>
+          <li>Filter by date</li>
+        </ul>
+      </article>
+      <article class="feature-card" style="--accent: var(--pink)">
+        <span class="number">6</span>
+        <h3>Notifications</h3>
+        <div class="big-icon">
+          <svg width="90" height="90" viewBox="0 0 90 90">
+            <path fill="none" stroke="currentColor" stroke-width="5" d="M25 62h40l-6-9V35a14 14 0 0 0-28 0v18z" />
+            <path fill="none" stroke="currentColor" stroke-width="5" d="M38 70a8 8 0 0 0 14 0" />
+            <circle cx="66" cy="25" r="12" fill="currentColor" />
+          </svg>
+        </div>
+        <ul>
+          <li>Complaint updates</li>
+          <li>Booking approval</li>
+          <li>Rejection alerts</li>
+          <li>Announcements</li>
+        </ul>
+      </article>
+      <article class="feature-card" style="--accent: var(--gold)">
+        <span class="number">7</span>
+        <h3>Advanced Features</h3>
+        <div class="big-icon">
+          <svg width="90" height="90" viewBox="0 0 90 90">
+            <path fill="none" stroke="currentColor" stroke-width="5"
+              d="M30 62h24M32 72h20M54 52c8-5 12-13 9-25-4-18-32-18-36 0-3 12 1 20 9 25" />
+            <circle cx="70" cy="62" r="8" fill="none" stroke="currentColor" stroke-width="4" />
+          </svg>
+        </div>
+        <ul>
+          <li>Photo upload</li>
+          <li>Rating system</li>
+          <li>Analytics</li>
+          <li>Auto priority</li>
+        </ul>
+      </article>
+      <article class="feature-card" style="--accent: var(--blue)">
+        <span class="number">8</span>
+        <h3>Other Features</h3>
+        <div class="big-icon">
+          <svg width="90" height="90" viewBox="0 0 90 90">
+            <path fill="none" stroke="currentColor" stroke-width="5"
+              d="M45 9l28 12v21c0 18-11 29-28 38-17-9-28-20-28-38V21z" />
+            <path fill="none" stroke="currentColor" stroke-width="6" d="M31 45l10 10 20-24" />
+          </svg>
+        </div>
+        <ul>
+          <li>Email alerts</li>
+          <li>Mobile responsive</li>
+          <li>Secure data</li>
+          <li>Easy interface</li>
+        </ul>
+      </article>
+      <article class="feature-card" style="--accent: var(--green)">
+        <span class="number">9</span>
+        <h3>Benefits</h3>
+        <div class="big-icon">
+          <svg width="90" height="90" viewBox="0 0 90 90">
+            <circle cx="45" cy="28" r="10" fill="currentColor" />
+            <path fill="none" stroke="currentColor" stroke-width="5"
+              d="M22 70c4-20 42-20 46 0M16 48c-8 5-8 18 0 25m58-25c8 5 8 18 0 25" />
+          </svg>
+        </div>
+        <ul>
+          <li>Easy submission</li>
+          <li>Fast tracking</li>
+          <li>Smart booking</li>
+          <li>Better management</li>
+        </ul>
+      </article>
+      <article class="feature-card" style="--accent: var(--violet)">
+        <span class="number">10</span>
+        <h3>Our Vision</h3>
+        <div class="big-icon">
+          <svg width="90" height="90" viewBox="0 0 90 90">
+            <path fill="none" stroke="currentColor" stroke-width="5"
+              d="M54 8C34 18 25 34 25 62l10-6 11 11 6-10c28 0 44-9 54-29-15 2-32-5-52-20z"
+              transform="translate(-13 0)" />
+            <path stroke="currentColor" stroke-width="5" d="M30 67l-12 12" />
+          </svg>
+        </div>
+        <ul>
+          <li>Smarter campus</li>
+          <li>Wise resource use</li>
+          <li>Student success</li>
+          <li>Better tomorrow</li>
+        </ul>
+      </article>
+    </section>
+
+    <section class="benefits-strip">
+      <div class="benefit"><span class="icon-badge">T</span><strong>Transparent System</strong><span>Open and
+          accountable for everyone.</span></div>
+      <div class="benefit"><span class="icon-badge">S</span><strong>Secure & Reliable</strong><span>Your campus data
+          stays protected.</span></div>
+      <div class="benefit"><span class="icon-badge">TM</span><strong>Save Time</strong><span>Simplified process with
+          faster action.</span></div>
+      <div class="benefit"><span class="icon-badge">D</span><strong>Data Driven</strong><span>Smart insights for better
+          decisions.</span></div>
+      <div class="benefit"><span class="icon-badge">ED</span><strong>Empowering Campus</strong><span>Students, staff and
+          admin working together.</span></div>
+    </section>
+
+    <section class="content-band plain">
+      <div class="band-inner split-section">
+        <div>
+          <h2>One System For Daily Campus Work</h2>
+          <p>Students can submit issues, track progress and request rooms without visiting multiple offices. Admin teams
+            can assign work, approve bookings and watch live trends from the same place.</p>
+          <div class="metric-row">
+            <div class="metric"><strong>24/7</strong><span>complaint access</span></div>
+            <div class="metric"><strong>3x</strong><span>faster updates</span></div>
+            <div class="metric"><strong>10+</strong><span>campus modules</span></div>
+            <div class="metric"><strong>100%</strong><span>responsive design</span></div>
+          </div>
+        </div>
+        <div class="step-list">
+          <div class="step-line"><span class="step-num">01</span>
+            <div><strong>Register or login</strong><br><span>Students and admins get role based access.</span></div>
+          </div>
+          <div class="step-line"><span class="step-num">02</span>
+            <div><strong>Submit or book</strong><br><span>Complaints and resource requests go into a clear queue.</span>
+            </div>
+          </div>
+          <div class="step-line"><span class="step-num">03</span>
+            <div><strong>Track live status</strong><br><span>Every update is visible through dashboard and
+                search.</span></div>
+          </div>
+          <div class="step-line"><span class="step-num">04</span>
+            <div><strong>Improve decisions</strong><br><span>Reports help management find repeated problems.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-band">
+      <div class="band-inner wide-copy">
+        <h2>Campus Workflow Timeline</h2>
+        <p>This section shows how the system can be used throughout a normal academic day.</p>
+        <div class="timeline">
+          <div class="timeline-item"><time>08:30 AM</time>
+            <div>
+              <h3>Morning checks</h3>
+              <p>Admin reviews pending complaints, lab booking requests and important announcements before classes
+                begin.</p>
+            </div>
+          </div>
+          <div class="timeline-item"><time>11:00 AM</time>
+            <div>
+              <h3>Student requests</h3>
+              <p>Students raise classroom, Wi-Fi, hostel, library and transport issues with category and priority.</p>
+            </div>
+          </div>
+          <div class="timeline-item"><time>02:00 PM</time>
+            <div>
+              <h3>Resource booking</h3>
+              <p>Departments book classrooms, labs, projectors and seminar halls based on available time slots.</p>
+            </div>
+          </div>
+          <div class="timeline-item"><time>05:00 PM</time>
+            <div>
+              <h3>Reports and closure</h3>
+              <p>Resolved items are closed, unresolved tasks are escalated and statistics are updated for tomorrow.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">Smart today, better tomorrow.</footer>
+  <div class="toast" id="toast"></div>
+  <script src="script.js"></script>
+</body>
+
+</html>

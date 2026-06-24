@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search & Filter | Smart Campus</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html"><span class="brand-mark">SC</span><span class="brand-text"><strong>Smart Campus</strong><span>Complaint & Resource System</span></span></a>
+    <div class="header-actions"><button class="theme-toggle" type="button">Light</button><button class="nav-toggle" aria-label="Open navigation"><span></span><span></span><span></span></button></div>
+    <nav class="main-nav">
+      <a href="index.html">Home</a><a href="auth.html">Login</a><a href="complaints.html">Complaints</a><a href="resources.html">Resources</a><a href="dashboard.html">Dashboard</a><a class="active" href="search.html">Search</a>
+    </nav>
+  </header>
+
+  <main class="page-shell">
+    <section class="page-title">
+      <h1>Search & Filter</h1>
+      <p>Find complaints and bookings by ID, category, status and date with quick filter controls.</p>
+    </section>
+
+    <section class="panel">
+      <div class="grid-3">
+        <div class="field"><label for="searchInput">Search ID or Subject</label><input id="searchInput" placeholder="CMP-2301 or library"></div>
+        <div class="field"><label for="categoryFilter">Category</label><select id="categoryFilter"><option value="all">All</option><option>IT</option><option>Library</option><option>Resource</option><option>Hostel</option></select></div>
+        <div class="field"><label for="statusFilter">Status</label><select id="statusFilter"><option value="all">All</option><option>Pending</option><option>Resolved</option><option>Approved</option><option>High</option></select></div>
+      </div>
+
+      <div class="filters" style="margin-top: 16px;">
+        <button class="filter-chip active" data-status="all">All</button>
+        <button class="filter-chip" data-status="Pending">Pending</button>
+        <button class="filter-chip" data-status="Resolved">Resolved</button>
+        <button class="filter-chip" data-status="Approved">Approved</button>
+        <button class="filter-chip" data-status="High">High Priority</button>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>ID</th><th>Category</th><th>Subject</th><th>Status</th><th>Date</th></tr></thead>
+          <tbody id="recordsTable"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="content-band plain">
+      <div class="band-inner split-section">
+        <div>
+          <h2>Search Helps Everyone</h2>
+          <p>Students can quickly find their own requests, while admin teams can filter by category and status to decide what needs attention first.</p>
+        </div>
+        <div class="step-list">
+          <div class="step-line"><span class="step-num">ID</span><div><strong>Complaint ID</strong><br><span>Use exact ID when the student already has tracking number.</span></div></div>
+          <div class="step-line"><span class="step-num">CT</span><div><strong>Category</strong><br><span>Separate IT, library, hostel and resource related work.</span></div></div>
+          <div class="step-line"><span class="step-num">ST</span><div><strong>Status</strong><br><span>Focus on pending, resolved, approved or high priority records.</span></div></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">Fast search, smart filter and clear tracking.</footer>
+  <div class="toast" id="toast"></div>
+  <script src="script.js"></script>
+</body>
+</html>
