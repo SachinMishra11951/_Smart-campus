@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Campus - Complaints</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="dashboard-body">
+    <nav class="sidebar">
+        <div class="sidebar-brand"><i class="fa-solid fa-graduation-cap"></i><h2>SMART CAMPUS</h2></div>
+        <ul class="sidebar-menu">
+            <li><a href="index.html"><i class="fa-solid fa-chart-pie"></i> Dashboard</a></li>
+            <li class="active"><a href="manage-complaints.html"><i class="fa-solid fa-clipboard-list"></i> Manage Complaints</a></li>
+            <li><a href="resource-booking.html"><i class="fa-solid fa-cubes"></i> Resource Booking</a></li>
+            <li><a href="analytics.html"><i class="fa-solid fa-chart-line"></i> Analytics</a></li>
+            <li><a href="settings.html"><i class="fa-solid fa-gears"></i> Settings</a></li>
+            <li class="logout"><a href="#"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+        </ul>
+    </nav>
+    <main class="main-content">
+        <header class="top-header">
+            <button class="menu-toggle" id="menuToggle"><i class="fa-solid fa-bars"></i></button>
+            <div class="typewriter-container"><h2 class="typewriter-text">Active Campus Grievances</h2></div>
+        </header>
+        <section class="data-table-container">
+            <table class="data-table">
+                <thead><tr><th>ID</th><th>Category</th><th>Priority</th><th>Status</th><th>Action</th></tr></thead>
+                <tbody>
+                    <tr><td>#CMP-8941</td><td>Lab Equipment</td><td><span class="priority high">High</span></td><td><span class="status pending">Pending</span></td><td><button class="btn btn-table-action">Review</button></td></tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>

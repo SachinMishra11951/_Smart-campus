@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Campus - Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body class="dashboard-body">
+
+    <nav class="sidebar">
+        <div class="sidebar-brand"><i class="fa-solid fa-graduation-cap"></i>
+            <h2>SMART CAMPUS</h2>
+        </div>
+        <ul class="sidebar-menu">
+            <li class="active"><a href="index.html"><i class="fa-solid fa-chart-pie"></i> Dashboard</a></li>
+            <li><a href="manage-complaints.html"><i class="fa-solid fa-clipboard-list"></i> Manage Complaints</a></li>
+            <li><a href="resource-booking.html"><i class="fa-solid fa-cubes"></i> Resource Booking</a></li>
+            <li><a href="analytics.html"><i class="fa-solid fa-chart-line"></i> Analytics</a></li>
+            <li><a href="settings.html"><i class="fa-solid fa-gears"></i> Settings</a></li>
+            <li class="logout"><a href="#"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        <header class="top-header">
+            <button class="menu-toggle" id="menuToggle"><i class="fa-solid fa-bars"></i></button>
+            <div class="typewriter-container">
+                <h2 class="typewriter-text">Welcome Back, Admin Portal</h2>
+            </div>
+        </header>
+
+        <section class="metrics-grid">
+            <div class="card card-blue">
+                <div class="card-icon"><i class="fa-solid fa-folder-open"></i></div>
+                <div class="card-info">
+                    <h3>142</h3>
+                    <p>Total Complaints</p>
+                </div>
+            </div>
+            <div class="card card-orange">
+                <div class="card-icon"><i class="fa-solid fa-clock"></i></div>
+                <div class="card-info">
+                    <h3>24</h3>
+                    <p>Pending Actions</p>
+                </div>
+            </div>
+            <div class="card card-green">
+                <div class="card-icon"><i class="fa-solid fa-calendar-check"></i></div>
+                <div class="card-info">
+                    <h3>48</h3>
+                    <p>Approved Bookings</p>
+                </div>
+            </div>
+            <div class="card card-purple">
+                <div class="card-icon"><i class="fa-solid fa-square-poll-vertical"></i></div>
+                <div class="card-info">
+                    <h3>94%</h3>
+                    <p>Resolution Rate</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="data-section">
+            <div class="data-table-container">
+                <div class="panel-header">
+                    <h3>Recent Campus Complaints</h3><button class="btn btn-primary">View All</button>
+                </div>
+                <div style="overflow-x: auto;">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Complaint ID</th>
+                                <th>Category</th>
+                                <th>Priority</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>#CMP-8941</td>
+                                <td>Lab Equipment</td>
+                                <td><span class="priority high">High</span></td>
+                                <td><span class="status pending">Pending</span></td>
+                                <td><button class="btn btn-table-action">Update</button></td>
+                            </tr>
+                            <tr>
+                                <td>#CMP-8939</td>
+                                <td>Classroom AC</td>
+                                <td><span class="priority medium">Medium</span></td>
+                                <td><span class="status in-progress">In Progress</span></td>
+                                <td><button class="btn btn-table-action">Update</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+
+</html>

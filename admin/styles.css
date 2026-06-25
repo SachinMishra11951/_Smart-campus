@@ -1,0 +1,264 @@
+/* ==========================================================================
+   1. GLOBAL THEME RESET & ANIMATION BASICS
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+:root {
+    --bg-dark: #0a0f1d;
+    --bg-sidebar: #0f172a;
+    --bg-card: #1e293b;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    
+    /* Neon Accents */
+    --neon-blue: #00f2fe;
+    --neon-orange: #ff8c00;
+    --neon-purple: #b5179e;
+    --neon-green: #00e676;
+}
+
+body.dashboard-body {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    display: flex;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Page entrance slide-in animation */
+.main-content {
+    margin-left: 260px;
+    flex: 1;
+    width: calc(100% - 260px);
+    padding: 40px;
+    animation: pageReveal 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* ==========================================================================
+   2. KEYFRAME ANIMATIONS (Typing, Scale Pop, Reveal)
+   ========================================================================== */
+@keyframes pageReveal {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes typingEffect {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+@keyframes blinkCursor {
+    50% { border-color: transparent; }
+}
+
+@keyframes neonPulse {
+    0%, 100% { text-shadow: 0 0 8px rgba(0, 242, 254, 0.4); }
+    50% { text-shadow: 0 0 20px rgba(0, 242, 254, 0.8), 0 0 30px rgba(0, 242, 254, 0.4); }
+}
+
+/* ==========================================================================
+   3. TYPEWRITER EFFECT CLASSES
+   ========================================================================== */
+.typewriter-container {
+    display: inline-block;
+}
+
+.typewriter-text {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 3px solid var(--neon-blue);
+    width: 0;
+    animation: 
+        typingEffect 2s steps(30, end) forwards,
+        blinkCursor 0.75s step-end infinite;
+}
+
+/* ==========================================================================
+   4. SIDEBAR NAVIGATION 
+   ========================================================================== */
+.sidebar {
+    width: 260px;
+    background-color: var(--bg-sidebar);
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    position: fixed;
+    height: 100vh;
+    z-index: 100;
+}
+
+.sidebar-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 1.1rem;
+    color: var(--neon-blue);
+    margin-bottom: 40px;
+    animation: neonPulse 3s infinite;
+}
+
+.sidebar-menu {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.sidebar-menu li { margin-bottom: 8px; }
+
+.sidebar-menu a {
+    color: var(--text-muted);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 14px 18px;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Springy Grow Pop effect on menu hover */
+.sidebar-menu a:hover {
+    color: #fff;
+    background-color: var(--bg-card);
+    transform: scale(1.05);
+    box-shadow: inset 4px 0 0 var(--neon-blue), 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.sidebar-menu li.active a {
+    color: #fff;
+    background-color: var(--bg-card);
+    box-shadow: inset 4px 0 0 var(--neon-blue);
+}
+
+.sidebar-menu li.logout { margin-top: auto; margin-bottom: 20px; }
+.sidebar-menu li.logout a:hover { box-shadow: inset 4px 0 0 var(--neon-orange); }
+
+/* ==========================================================================
+   5. CARDS & SECTIONS (Staggered scaling behaviors)
+   ========================================================================== */
+.metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+    margin-bottom: 35px;
+}
+
+.card {
+    background-color: var(--bg-card);
+    border-radius: 12px;
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Interactive Pop scaling that returns elegantly */
+.card:hover {
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+}
+
+.card-icon { font-size: 2.2rem; }
+.card-info h3 { font-size: 2rem; margin-bottom: 4px; }
+.card-info p { color: var(--text-muted); font-size: 0.95rem; }
+
+.card-blue i { color: var(--neon-blue); } .card-blue { border-bottom: 3px solid var(--neon-blue); }
+.card-orange i { color: var(--neon-orange); } .card-orange { border-bottom: 3px solid var(--neon-orange); }
+.card-green i { color: var(--neon-green); } .card-green { border-bottom: 3px solid var(--neon-green); }
+.card-purple i { color: var(--neon-purple); } .card-purple { border-bottom: 3px solid var(--neon-purple); }
+
+/* Layout Splits */
+.data-section {
+    display: grid;
+    grid-template-columns: 2.2fr 1fr;
+    gap: 30px;
+}
+
+.data-table-container, .resource-panel {
+    background-color: var(--bg-card);
+    padding: 25px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.top-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 35px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding-bottom: 20px;
+}
+
+/* ==========================================================================
+   6. TABLES, ELEMENTS & BUTTONS
+   ========================================================================== */
+.data-table { width: 100%; border-collapse: collapse; text-align: left; }
+.data-table th, .data-table td { padding: 16px; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+.data-table th { color: var(--text-muted); text-transform: uppercase; font-size: 0.85rem; }
+
+.btn {
+    padding: 10px 20px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.btn:hover { transform: scale(1.08); }
+.btn:active { transform: scale(0.95); }
+
+.btn-primary { background: var(--neon-blue); color: var(--bg-dark); }
+.btn-table-action { background: transparent; border: 1px solid var(--neon-blue); color: var(--neon-blue); }
+.btn-table-action:hover { background: var(--neon-blue); color: var(--bg-dark); }
+
+.status { padding: 6px 12px; border-radius: 4px; font-size: 0.8rem; font-weight: bold; }
+.status.pending { background: rgba(255, 140, 0, 0.15); color: var(--neon-orange); }
+.status.in-progress { background: rgba(0, 242, 254, 0.15); color: var(--neon-blue); }
+.status.resolved { background: rgba(0, 230, 118, 0.15); color: var(--neon-green); }
+
+.resource-list { display: flex; flex-direction: column; gap: 15px; }
+.resource-item {
+    display: flex; justify-content: space-between; align-items: center; padding: 14px;
+    background-color: rgba(255, 255, 255, 0.02); border-radius: 8px;
+    transition: transform 0.2s;
+}
+.resource-item:hover { transform: translateX(5px); background-color: rgba(255, 255, 255, 0.05); }
+
+.badge-booked { color: var(--neon-orange); }
+.badge-available { color: var(--neon-green); }
+
+.menu-toggle { display: none; background: transparent; border: none; color: var(--text-main); font-size: 1.5rem; cursor: pointer; }
+
+/* Form Setup Helper */
+.form-group { margin-bottom: 25px; display: flex; flex-direction: column; gap: 8px; }
+.form-group label { color: var(--text-muted); font-size: 0.9rem; }
+.form-group input, .form-group select { background: var(--bg-dark); border: 1px solid rgba(255,255,255,0.1); padding: 12px; border-radius: 6px; color: #fff; width: 100%; outline: none; }
+
+/* ==========================================================================
+   7. ULTRA RESPONSIVE LAYOUT BREAKPOINTS
+   ========================================================================== */
+@media (max-width: 992px) {
+    .data-section { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 768px) {
+    .menu-toggle { display: block; }
+    .sidebar { left: -260px; transition: left 0.3s ease-in-out; }
+    .sidebar.active { left: 0; }
+    .main-content { margin-left: 0; width: 100%; padding: 20px; }
+    .top-header { justify-content: flex-start; gap: 20px; }
+    .metrics-grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+}

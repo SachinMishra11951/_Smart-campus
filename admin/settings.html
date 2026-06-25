@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Campus - Settings</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="dashboard-body">
+    <nav class="sidebar">
+        <div class="sidebar-brand"><i class="fa-solid fa-graduation-cap"></i><h2>SMART CAMPUS</h2></div>
+        <ul class="sidebar-menu">
+            <li><a href="index.html"><i class="fa-solid fa-chart-pie"></i> Dashboard</a></li>
+            <li><a href="manage-complaints.html"><i class="fa-solid fa-clipboard-list"></i> Manage Complaints</a></li>
+            <li><a href="resource-booking.html"><i class="fa-solid fa-cubes"></i> Resource Booking</a></li>
+            <li><a href="analytics.html"><i class="fa-solid fa-chart-line"></i> Analytics</a></li>
+            <li class="active"><a href="settings.html"><i class="fa-solid fa-gears"></i> Settings</a></li>
+            <li class="logout"><a href="#"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+        </ul>
+    </nav>
+    <main class="main-content">
+        <header class="top-header">
+            <button class="menu-toggle" id="menuToggle"><i class="fa-solid fa-bars"></i></button>
+            <div class="typewriter-container"><h2 class="typewriter-text">Global Parameters</h2></div>
+        </header>
+        <section class="data-table-container" style="max-width: 500px;">
+            <form>
+                <div class="form-group"><label>Alert Route Email Target</label><input type="email" value="admin@campus.edu"></div>
+                <button type="button" class="btn btn-primary">Save Settings</button>
+            </form>
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
