@@ -1,6 +1,7 @@
 from database import Base
-from sqlalchemy import Column, Integer, String, ForeignKey
+from sqlalchemy import *
 from sqlalchemy.orm import relationship 
+
 class User(Base):
     __tablename__ = "users"
     id = Column(Integer, primary_key=True, index=True)
@@ -10,6 +11,8 @@ class User(Base):
     role = Column(String)
     complaints = relationship("Complaint",back_populates="user")
     bookings = relationship("Booking" , back_populates = "user" )
+    reset_otp = Column(String, nullable=True)
+    otp_expiry = Column(DateTime, nullable=True)
 
 class Complaint(Base):
     __tablename__="complaints"

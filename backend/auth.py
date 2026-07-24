@@ -7,6 +7,10 @@ from fastapi import Depends, HTTPException
 from database import Sessionlocal
 from models import User
 from fastapi.security import OAuth2PasswordBearer
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="login")
 
@@ -22,7 +26,7 @@ def hashpassword(password : str):
 def verifypassword(password : str , ha :str):
     return pwd_context.verify(password , ha )
 
-SECRET_KEY = "686c1219ccfcb5e7a299d899ca9bef569b483bb335d04980ca0ce8a5d0b2eb7e"
+SECRET_KEY = os.getenv("SECRET_KEY")
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
 

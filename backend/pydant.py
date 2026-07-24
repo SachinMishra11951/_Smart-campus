@@ -69,3 +69,15 @@ class StudentBookingUpdate(BaseModel):
     resource_id : Optional[int] = None
     purpose : Optional[str] = None
     remark : Optional[str] = None
+
+class ForgotPasswordRequest(BaseModel):
+    email: EmailStr
+
+class VerifyOTPRequest(BaseModel):
+    email: EmailStr
+    otp: str
+
+class ResetPasswordRequest(BaseModel):
+    email: EmailStr
+    otp: str
+    new_password: str

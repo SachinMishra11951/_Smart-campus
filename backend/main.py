@@ -12,6 +12,8 @@ from pydant import *
 from fastapi import Depends
 from auth import get_current_user
 from fastapi.security import OAuth2PasswordRequestForm
+from email_utils import send_otp_email
+import random
 
 Base.metadata.create_all(bind=engine)
 
@@ -54,6 +56,72 @@ def login(form_data =Depends(OAuth2PasswordRequestForm) ):
             status_code = 401,
             detail = "wrong email"
         )
+    
+@app.post("/forgot-password")
+def forgot_password(data: ForgotPasswordRequest):
+    session = Sessionlocal()
+    user = session.query(User).filter(User.email == data.email).first()
+    if user is None:
+        session.close()
+        raise HTTPException(
+            status_code=404,
+            detail="User not found"
+        )
+    otp = str(random.randint(100000, 999999))
+    user.reset_otp = otp
+    user.otp_expiry = datetime.datetime.utcnow() + datetime.timedelta(minutes=10)
+    session.commit()
+    send_otp_email(user.email, otp)
+    session.close()
+    return {
+        "message": "OTP sent successfully"
+    }
+
+@app.post("/verify-otp")
+def verify_otp(data: VerifyOTPRequest):
+    session = Sessionlocal()
+    user = session.query(User).filter(User.email == data.email).first()
+    if user is None:
+        session.close()
+        raise HTTPException(status_code=404, detail="User not found")
+    if user.reset_otp != data.otp:
+        session.close()
+        raise HTTPException(status_code=400, detail="Invalid OTP")
+    if (
+        user.otp_expiry is None
+        or datetime.datetime.utcnow() > user.otp_expiry
+    ):
+        session.close()
+        raise HTTPException(status_code=400, detail="OTP expired")
+    session.close()
+    return {
+        "message": "OTP verified successfully"
+    }
+
+@app.post("/reset-password")
+def reset_password(data: ResetPasswordRequest):
+    session = Sessionlocal()
+    user = session.query(User).filter(User.email == data.email).first()
+    if user is None:
+        session.close()
+        raise HTTPException(status_code=404, detail="User not found")
+    if user.reset_otp != data.otp:
+        session.close()
+        raise HTTPException(status_code=400, detail="Invalid OTP")
+    if (
+        user.otp_expiry is None
+        or datetime.datetime.utcnow() > user.otp_expiry
+    ):
+        session.close()
+        raise HTTPException(status_code=400, detail="OTP expired")
+    user.password = hashpassword(data.new_password)
+    user.reset_otp = None
+    user.otp_expiry = None
+    session.commit()
+    session.close()
+    return {
+        "message": "Password reset successfully"
+    }
 
 @app.get("/complaints")
 def get_complaints(current_user = Depends(get_current_user)):
@@ -899,21 +967,4 @@ def update_student_booking(booking_id :int , booking : StudentBookingUpdate , cu
     detail="Booking not found"
 ) 
 
-@app.put("/admin/users/{user_id}/reset-password")
-def temp_reset_pass(user_id : int , user: AdminTempPassUpdate , current_user = Depends(get_current_admin)):
-    session = Sessionlocal()
-    que = session.query(User)
-    use = que.filter(User.id == user_id).first()
-    if use:
-        if user.password is not None:
-            use.password = hashpassword(user.password)       
-        session.commit()
-        session.close()
-        return {
-                    "message":"User updated successfully",
-            }
-    session.close()
-    raise HTTPException(
-    status_code=404,
-    detail = "User not found"
-    )   
+ 
