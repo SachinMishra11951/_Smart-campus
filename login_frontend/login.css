@@ -1,0 +1,280 @@
+:root {
+    --bg: #0a0c1a;
+    --bg2: #0f1228;
+    --bg3: #151835;
+    --card: #131630;
+    --border: rgba(99, 102, 241, 0.18);
+    --border2: rgba(99, 102, 241, 0.35);
+    --accent: #6366f1;
+    --accent2: #818cf8;
+    --cyan: #22d3ee;
+    --green: #4ade80;
+    --yellow: #fbbf24;
+    --red: #f87171;
+    --pink: #f472b6;
+    --text: #e2e8f0;
+    --text2: #94a3b8;
+    --text3: #64748b;
+    --glow: 0 0 20px rgba(99, 102, 241, 0.35);
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+/* ── LOGIN SCREEN ── */
+#login-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #050714 0%, #0d0f2b 50%, #0a1628 100%);
+}
+
+.login-bg-stars {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.star {
+    position: absolute;
+    border-radius: 50%;
+    background: white;
+    opacity: 0;
+    animation: twinkle var(--d) var(--del) infinite ease-in-out;
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0; transform: scale(0.5); }
+    50% { opacity: var(--op); transform: scale(1); }
+}
+
+.login-card {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: min(900px, 95vw);
+    border-radius: 24px;
+    overflow: hidden;
+    border: 1px solid var(--border2);
+    box-shadow: 0 0 80px rgba(99, 102, 241, 0.25), 0 0 160px rgba(34, 211, 238, 0.08);
+    animation: loginFloat 6s ease-in-out infinite;
+}
+
+@keyframes loginFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+.login-left {
+    background: linear-gradient(160deg, #0e102a 0%, #14193b 100%);
+    padding: 48px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 24px;
+}
+
+.login-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.login-logo-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--accent), var(--cyan));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    box-shadow: var(--glow);
+}
+
+.login-logo-text {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: var(--accent2);
+    text-transform: uppercase;
+}
+
+.login-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: white;
+    line-height: 1.3;
+}
+
+.login-title span { color: var(--accent2); }
+
+.login-subtitle { font-size: 13px; color: var(--text3); line-height: 1.6; }
+
+.login-features { display: flex; flex-direction: column; gap: 10px; }
+
+.login-feature { display: flex; align-items: center; gap: 10px; font-size: 12px; color: var(--text2); }
+
+.login-feature-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--cyan);
+    box-shadow: 0 0 8px var(--cyan);
+}
+
+.login-right {
+    background: rgba(10, 12, 26, 0.95);
+    padding: 48px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+}
+
+.login-right h2 { font-size: 20px; font-weight: 600; color: var(--text); }
+.login-right p { font-size: 13px; color: var(--text3); }
+
+.form-group { display: flex; flex-direction: column; gap: 8px; }
+
+.form-group label {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text2);
+    letter-spacing: 0.5px;
+}
+
+.form-input {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 16px;
+    color: var(--text);
+    font-size: 14px;
+    outline: none;
+    transition: border 0.3s, box-shadow 0.3s;
+    width: 100%;
+}
+
+.form-input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+
+.login-check { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text2); }
+
+.btn-login {
+    background: linear-gradient(135deg, var(--accent), var(--cyan));
+    border: none;
+    border-radius: 10px;
+    padding: 13px;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.3s;
+}
+
+.btn-login:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(99, 102, 241, 0.5);
+}
+
+.forgot {
+    font-size: 12px;
+    color: var(--accent2);
+    text-align: center;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+/* ── FORGOT MODAL ── */
+.forgot-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    backdrop-filter: blur(6px);
+}
+
+.forgot-modal.show { display: flex; }
+
+.forgot-box {
+    width: min(420px, 90vw);
+    background: var(--card);
+    padding: 30px;
+    border-radius: 18px;
+    border: 1px solid var(--border2);
+}
+
+.forgot-box h2 { margin-bottom: 8px; font-size: 18px; }
+.forgot-box p { margin-bottom: 20px; font-size: 13px; color: var(--text3); }
+
+.forgot-buttons { display: flex; gap: 12px; margin-top: 16px; }
+
+.cancel-btn {
+    padding: 12px 20px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    cursor: pointer;
+    background: var(--bg3);
+    color: var(--text2);
+    font-weight: 500;
+}
+
+.cancel-btn:hover { border-color: var(--red); color: var(--red); }
+
+@media(max-width: 768px) {
+    .login-card { grid-template-columns: 1fr; }
+    .login-left { display: none; }
+}
+/* Password Visibility Toggle */
+.password-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.password-wrapper input {
+    width: 100%;
+    padding-right: 40px; /* Make room for the icon */
+}
+
+.password-toggle {
+    position: absolute;
+    right: 12px;
+    cursor: pointer;
+    color: var(--text3);
+    font-size: 16px;
+    user-select: none;
+    transition: color 0.2s;
+}
+
+.password-toggle:hover {
+    color: var(--accent);
+}
+.hidden {
+    display: none !important;
+}

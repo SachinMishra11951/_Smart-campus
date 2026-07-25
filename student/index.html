@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Campus — Student Portal</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <div id="app">
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                <div class="sidebar-logo-icon">🎓</div>
+                <div>
+                    <div class="sidebar-logo-text">Smart Campus</div>
+                    <div class="sidebar-logo-sub">STUDENT PORTAL</div>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="nav-section-label">Overview</div>
+                <div class="nav-item active" onclick="showPage('dashboard', this)">
+                    <span class="nav-icon">🏠</span><span>Dashboard</span>
+                </div>
+                <div class="nav-section-label">Complaints</div>
+                <div class="nav-item" onclick="openModal('raise-complaint-modal')">
+                    <span class="nav-icon">➕</span><span>Raise Complaint</span>
+                </div>
+                <div class="nav-item" onclick="showPage('myComplaints', this)">
+                    <span class="nav-icon">📋</span><span>My Complaints</span>
+                    <span class="nav-badge" id="student-sidebar-complaint-badge" style="display: none;"></span>
+                </div>
+                <div class="nav-section-label">Bookings</div>
+                <div class="nav-item" onclick="openModal('book-resource-modal')">
+                    <span class="nav-icon">📅</span><span>Book Resource</span>
+                </div>
+                <div class="nav-item" onclick="showPage('myBookings', this)">
+                    <span class="nav-icon">🏛️</span><span>My Bookings</span>
+                </div>
+                <div class="nav-section-label">Account</div>
+                <div class="nav-item" onclick="showPage('notifications', this)">
+                    <span class="nav-icon">🔔</span><span>Notifications</span>
+                    <span class="nav-badge" id="student-sidebar-notif-badge" style="display: none;"></span>
+                </div>
+                <div class="nav-item" onclick="showPage('settings', this)">
+                    <span class="nav-icon">⚙️</span><span>Settings</span>
+                </div>
+            </nav>
+            <div class="sidebar-bottom">
+                <div class="admin-avatar">S</div>
+                <div class="admin-info">
+                    <div class="admin-name" id="sidebarStudentName">Student</div>
+                    <div class="admin-role">● Active Student</div>
+                </div>
+                <div class="logout-btn tooltip" data-tip="Logout" onclick="doLogout()">⏻</div>
+            </div>
+        </aside>
+
+        <!-- HEADER -->
+        <header class="header">
+            <div class="header-title" id="header-title">DASHBOARD</div>
+            <div class="header-search">
+                <span style="color:var(--text3);font-size:14px">🔍</span>
+                <input type="text" placeholder="Search my requests, labs..." id="global-search">
+            </div>
+            <div class="header-actions">
+                <div class="header-btn tooltip" data-tip="Notifications" onclick="showPage('notifications', null)">
+                    🔔 <span class="badge" id="header-notif-badge" style="display: none;"></span>
+                </div>
+                <div class="header-btn tooltip" data-tip="Settings" onclick="showPage('settings', null)">⚙️</div>
+                <div class="theme-toggle" id="theme-toggle">
+                    <span id="theme-icon">🌙</span>
+                    <div class="toggle-track" id="toggle-track">
+                        <div class="toggle-thumb" id="toggle-thumb"></div>
+                    </div>
+                    <span id="theme-label">Dark</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- MAIN CONTENT -->
+        <main class="main">
+
+            <!-- ─── DASHBOARD ─── -->
+            <section class="page active" id="page-dashboard">
+                <div class="page-header">
+                    <div class="page-header-left">
+                        <div class="page-eyebrow">WELCOME BACK</div>
+                        <div class="page-title" id="welcomeMessage">Good Morning, Student 👋</div>
+                        <div class="page-subtitle">Track your filed complaints and facility reservations</div>
+                    </div>
+                    <div class="page-actions">
+                        <button class="btn btn-primary btn-sm" onclick="openModal('raise-complaint-modal')">+ Raise Complaint</button>
+                    </div>
+                </div>
+
+                <!-- Stats Grid -->
+                <div class="stats-grid">
+                    <div class="stat-card scale-in" style="--accent-color:var(--accent);--accent-bg:rgba(99,102,241,0.1);animation-delay:0s">
+                        <div class="stat-icon">📋</div>
+                        <div class="stat-value" id="student-stat-total">0</div>
+                        <div class="stat-label">Total Complaints</div>
+                        <div class="stat-change" style="color: var(--text3);">● Live Data</div>
+                    </div>
+                    <div class="stat-card scale-in" style="--accent-color:var(--yellow);--accent-bg:rgba(251,191,36,0.1);animation-delay:0.1s">
+                        <div class="stat-icon">⏳</div>
+                        <div class="stat-value" id="student-stat-pending">0</div>
+                        <div class="stat-label">Pending Resolution</div>
+                        <div class="stat-change" style="color: var(--text3);">● Live Data</div>
+                    </div>
+                    <div class="stat-card scale-in" style="--accent-color:var(--green);--accent-bg:rgba(74,222,128,0.1);animation-delay:0.2s">
+     <div class="stat-icon">✅</div>
+<div class="stat-value" id="student-stat-resolved">0</div>
+<div class="stat-label">Resolved</div>
+<div class="stat-change" style="color: var(--text3);">● Live Data</div>
+                    </div>
+                    <div class="stat-card scale-in" style="--accent-color:var(--cyan);--accent-bg:rgba(34,211,238,0.1);animation-delay:0.3s">
+<div class="stat-icon">🏛️</div>
+<div class="stat-value" id="student-stat-bookings">0</div>
+<div class="stat-label">Active Bookings</div>
+<div class="stat-change" style="color: var(--text3);">● Live Data</div>
+                    </div>
+                </div>
+
+                <!-- Content Grid -->
+                <div class="grid-2-1" style="margin-bottom:16px">
+                    <div style="display:flex;flex-direction:column;gap:16px">
+                        <!-- Recent Complaints Table Card -->
+                        <div class="card">
+                            <div class="card-title">Recent Complaint Activity</div>
+                            <div class="table-wrapper">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Title / Resource</th>
+                                            <th>Category</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="dash-complaints-tbody"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- Analytics Chart -->
+                        <div class="card">
+                            <div class="card-title">Complaint Status Distribution</div>
+                            <canvas id="studentComplaintChart" height="130"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Quick Actions & Live Activity Feed -->
+                    <div style="display:flex;flex-direction:column;gap:16px">
+                        <div class="card">
+                            <div class="card-title">⚡ Quick Actions</div>
+                            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+                                <button class="btn btn-primary" onclick="openModal('raise-complaint-modal')">➕ Complaint</button>
+                                <button class="btn btn-secondary" onclick="openModal('book-resource-modal')">🏫 Book Lab</button>
+                                <button class="btn btn-secondary" onclick="showPage('myComplaints', null)">📋 My List</button>
+                                <button class="btn btn-secondary" onclick="showPage('myBookings', null)">📅 Bookings</button>
+                            </div>
+                        </div>
+                        <div class="card" style="flex:1;max-height:340px;overflow-y:auto">
+                            <div class="card-title">Updates Feed <span style="float:right;font-size:11px;color:var(--green)">Live ●</span></div>
+                            <div class="activity-list" id="student-activity-list"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Live Status Marquee -->
+                <div class="card">
+                    <div class="live-feed">
+                        <div class="live-feed-label">
+                            <div class="live-dot"></div>Live Ticket Updates
+                        </div>
+                        <div class="live-text" id="live-text"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ─── MY COMPLAINTS ─── -->
+            <section class="page" id="page-myComplaints">
+                <div class="page-header">
+                    <div class="page-header-left">
+                        <div class="page-eyebrow">HISTORY</div>
+                        <div class="page-title">My Complaints</div>
+                        <div class="page-subtitle">Track tickets and report issues with campus equipment</div>
+                    </div>
+                    <div class="page-actions">
+                        <button class="btn btn-primary btn-sm" onclick="openModal('raise-complaint-modal')">+ New Complaint</button>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Ticket ID</th>
+                                    <th>Title</th>
+                                    <th>Category</th>
+                                    <th>Date</th>
+                                    <th>Priority</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="my-complaints-tbody"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ─── MY BOOKINGS ─── -->
+            <section class="page" id="page-myBookings">
+                <div class="page-header">
+                    <div class="page-header-left">
+                        <div class="page-eyebrow">RESERVATIONS</div>
+                        <div class="page-title">My Bookings</div>
+                        <div class="page-subtitle">Manage lab slots, printers, and seminar hall reservations</div>
+                    </div>
+                    <div class="page-actions">
+                        <button class="btn btn-primary btn-sm" onclick="openModal('book-resource-modal')">+ New Booking</button>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Booking ID</th>
+                                    <th>Resource</th>
+                                    <th>Date</th>
+                                    <th>Time Slot</th>
+                                    <th>Purpose</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="my-bookings-tbody"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ─── NOTIFICATIONS ─── -->
+            <section class="page" id="page-notifications">
+                <div class="page-header">
+                    <div class="page-header-left">
+                        <div class="page-eyebrow">ALERTS</div>
+                        <div class="page-title">Notifications</div>
+                        <div class="page-subtitle">Status updates regarding your requests</div>
+                    </div>
+                </div>
+                <div id="student-notif-list"></div>
+            </section>
+
+            <!-- ─── SETTINGS ─── -->
+            <section class="page" id="page-settings">
+                <div class="page-header">
+                    <div class="page-header-left">
+                        <div class="page-eyebrow">ACCOUNT</div>
+                        <div class="page-title">Profile Settings</div>
+                    </div>
+                </div>
+                <div class="card" style="max-width:600px">
+                    <div class="profile-header" style="border:none;padding:0;margin-bottom:20px">
+                        <div class="profile-avatar-large">S</div>
+                        <div class="profile-info">
+                            <div class="profile-name" id="settingStudentName">Student</div>
+                            <div class="profile-role">● Student Portal</div>
+                        </div>
+                    </div>
+<div style="display:flex;flex-direction:column;gap:12px">
+                        <div class="form-group"><label style="font-size:11px;color:var(--text3)">DISPLAY NAME</label><input class="filter-select" id="settingInputName" value="Student" style="width:100%"></div>
+                        
+                        <div class="form-group"><label style="font-size:11px;color:var(--text3)">EMAIL</label><input class="filter-select" value="student@campus.edu" readonly style="width:100%; opacity: 0.7; cursor: not-allowed;"></div>
+                        
+                        <!-- NEW ROLL NUMBER INPUT FOR STUDENTS -->
+                        <div class="form-group">
+                            <label style="font-size:11px;color:var(--text3)">ROLL NUMBER</label>
+                            <div style="display: flex; gap: 8px;">
+                                <select id="settingBranch" class="filter-select" style="width: 80px;">
+                                    <option value="IT">IT</option>
+                                    <option value="CS">CS</option>
+                                    <option value="EE">EE</option>
+                                    <option value="ME">ME</option>
+                                    <option value="CE">CE</option>
+                                </select>
+                                <input type="text" id="settingYear" class="filter-select" placeholder="YY" maxlength="2" style="width: 60px; text-align: center;">
+                                <input type="text" id="settingRollId" class="filter-select" placeholder="No." maxlength="3" style="flex: 1;">
+                            </div>
+                        </div>
+                        <button class="btn btn-primary" style="margin-top:8px" onclick="saveSettings()">Save Changes</button>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+
+<!-- ═══════════════ MODALS ═══════════════ -->
+    <div class="modal-overlay" id="raise-complaint-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <div class="modal-title">📋 Raise Complaint</div>
+                <button class="modal-close" onclick="closeModal('raise-complaint-modal')">✕</button>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:12px">
+                <div>
+                    <label style="font-size:11px;color:var(--text3);margin-bottom:4px;display:block">COMPLAINT TITLE</label>
+                    <input class="filter-select" id="compTitle" placeholder="e.g. Wi-Fi router not working in Lab 2" style="width:100%">
+                </div>
+   <div>
+                    <label style="font-size:11px;color:var(--text3);margin-bottom:4px;display:block">CATEGORY</label>
+                    <select class="filter-select" id="compCategory" style="width:100%">
+                        <option value="IT/CSE">Computer Lab / Wi-Fi</option>
+                        <option value="Electrical">Classroom AC / Lights</option>
+                        <option value="Hostel">Hostel</option>
+                        <option value="Other">Other</option>
+                        <option value="Projector">Projector Setup</option>
+                        <option value="3D Printer">3D Printer / Lab Hardware</option>
+                    </select>
+                </div>
+                <div>
+                    <label style="font-size:11px;color:var(--text3);margin-bottom:4px;display:block">DESCRIPTION</label>
+                    <textarea class="filter-select" id="compDesc" rows="3" placeholder="Describe the problem in detail..." style="width:100%;height:80px;resize:none"></textarea>
+                </div>
+                <div style="display:flex;gap:10px;margin-top:8px">
+                    <button class="btn btn-primary" style="flex:1" onclick="submitComplaint()">Submit Complaint</button>
+                    <button class="btn btn-secondary" onclick="closeModal('raise-complaint-modal')">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="book-resource-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <div class="modal-title">📅 Book Campus Resource</div>
+                <button class="modal-close" onclick="closeModal('book-resource-modal')">✕</button>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:12px">
+                <div>
+                    <label style="font-size:11px;color:var(--text3);margin-bottom:4px;display:block">RESOURCE TYPE</label>
+                    <select class="filter-select" id="bookResourceSelect" style="width:100%">
+                        <option>Computer Lab 1</option>
+                        <option>Seminar Hall B</option>
+                        <option>3D Printer (Innovation Lab)</option>
+                        <option>Projector Kit A</option>
+                    </select>
+                </div>
+                <div>
+                    <label style="font-size:11px;color:var(--text3);margin-bottom:4px;display:block">DATE</label>
+                    <input class="filter-select" type="date" id="bookDate" style="width:100%">
+                </div>
+                <div>
+                    <label style="font-size:11px;color:var(--text3);margin-bottom:4px;display:block">TIME SLOT</label>
+                    <select class="filter-select" id="bookSlot" style="width:100%">
+                        <option>08:00 – 10:00</option>
+                        <option>10:00 – 12:00</option>
+                        <option>13:00 – 15:00</option>
+                        <option>15:00 – 17:00</option>
+                    </select>
+                </div>
+                <div style="display:flex;gap:10px;margin-top:8px">
+                    <button class="btn btn-primary" style="flex:1" onclick="submitBooking()">Request Booking</button>
+                    <button class="btn btn-secondary" onclick="closeModal('book-resource-modal')">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

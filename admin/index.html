@@ -1,107 +1,686 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smart Campus - Dashboard</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Smart Campus — Portal</title>
+    <link rel="stylesheet" href="style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
 </head>
 
-<body class="dashboard-body">
+<body>
 
-    <nav class="sidebar">
-        <div class="sidebar-brand"><i class="fa-solid fa-graduation-cap"></i>
-            <h2>SMART CAMPUS</h2>
-        </div>
-        <ul class="sidebar-menu">
-            <li class="active"><a href="index.html"><i class="fa-solid fa-chart-pie"></i> Dashboard</a></li>
-            <li><a href="manage-complaints.html"><i class="fa-solid fa-clipboard-list"></i> Manage Complaints</a></li>
-            <li><a href="resource-booking.html"><i class="fa-solid fa-cubes"></i> Resource Booking</a></li>
-            <li><a href="analytics.html"><i class="fa-solid fa-chart-line"></i> Analytics</a></li>
-            <li><a href="settings.html"><i class="fa-solid fa-gears"></i> Settings</a></li>
-            <li class="logout"><a href="#"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
-        </ul>
-    </nav>
+    
+    <!-- ═══════════════ MAIN APP ═══════════════ -->
+    <div id="app">
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                <div class="sidebar-logo-icon">🎓</div>
+                <div>
+                    <div class="sidebar-logo-text">Smart Campus</div>
+                    <div class="sidebar-logo-sub">ADMIN PORTAL</div>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="nav-section-label">Overview</div>
+                <div class="nav-item active" onclick="showPage('dashboard',this)">
+                    <span class="nav-icon">🏠</span><span>Home</span>
+                </div>
+                <div class="nav-section-label">Management</div>
+                <div class="nav-item" onclick="showPage('complaints',this)">
+                    <span class="nav-icon">📋</span><span>Complaint Management</span>
+                    <span class="nav-badge" id="admin-sidebar-complaint-badge" style="display: none;"></span>
+                </div>
+                <div class="nav-item" onclick="showPage('resources',this)">
+                    <span class="nav-icon">🏛️</span><span>Resource Management</span>
+                </div>
+                <div class="nav-item" onclick="showPage('approvals',this)">
+                    <span class="nav-icon">✅</span><span>Booking Approval</span>
+                </div>
+                <div class="nav-section-label">Analytics</div>
+                <div class="nav-item" onclick="showPage('statistics',this)">
+                    <span class="nav-icon">📊</span><span>View Statistics</span>
+                </div>
+                <div class="nav-item" onclick="showPage('notifications',this)">
+                    <span class="nav-icon">🔔</span><span>Notifications</span>
+                    <span class="nav-badge" id="admin-sidebar-notif-badge" style="display: none;"></span>
+                </div>
+                <div class="nav-section-label">System</div>
+                <div class="nav-item" onclick="showPage('users',this)">
+                    <span class="nav-icon">👥</span><span>User Management</span>
+                </div>
+                <div class="nav-item" onclick="showPage('settings',this)">
+                    <span class="nav-icon">⚙️</span><span>Settings</span>
+                </div>
+            </nav>
+            <div class="sidebar-bottom">
+                <div class="admin-avatar">A</div>
+                <div class="admin-info">
+                    <div class="admin-name">Admin User</div>
+                    <div class="admin-role">● Super Admin</div>
+                </div>
+                <div class="logout-btn tooltip" data-tip="Logout" onclick="doLogout()">⏻</div>
+            </div>
+        </aside>
 
-    <main class="main-content">
-        <header class="top-header">
-            <button class="menu-toggle" id="menuToggle"><i class="fa-solid fa-bars"></i></button>
-            <div class="typewriter-container">
-                <h2 class="typewriter-text">Welcome Back, Admin Portal</h2>
+        <!-- HEADER -->
+        <header class="header">
+            <div class="header-title" id="header-title">DASHBOARD</div>
+            <div class="header-search">
+                <span style="color:var(--text3);font-size:14px">🔍</span>
+                <input type="text" placeholder="Search complaints, resources..." id="global-search">
+            </div>
+            <div class="header-actions">
+                <div class="header-btn tooltip" data-tip="Notifications" onclick="showPage('notifications',null)">
+                    🔔 <span class="badge" id="header-notif-badge" style="display: none;"></span>
+                </div>
+                <div class="header-btn tooltip" data-tip="Settings" onclick="showPage('settings',null)">⚙️</div>
+                <div class="theme-toggle" onclick="toggleTheme()">
+                    <span id="theme-icon">🌙</span>
+                    <div class="toggle-track" id="toggle-track">
+                        <div class="toggle-thumb" id="toggle-thumb"></div>
+                    </div>
+                    <span id="theme-label">Dark</span>
+                </div>
             </div>
         </header>
 
-        <section class="metrics-grid">
-            <div class="card card-blue">
-                <div class="card-icon"><i class="fa-solid fa-folder-open"></i></div>
-                <div class="card-info">
-                    <h3>142</h3>
-                    <p>Total Complaints</p>
-                </div>
-            </div>
-            <div class="card card-orange">
-                <div class="card-icon"><i class="fa-solid fa-clock"></i></div>
-                <div class="card-info">
-                    <h3>24</h3>
-                    <p>Pending Actions</p>
-                </div>
-            </div>
-            <div class="card card-green">
-                <div class="card-icon"><i class="fa-solid fa-calendar-check"></i></div>
-                <div class="card-info">
-                    <h3>48</h3>
-                    <p>Approved Bookings</p>
-                </div>
-            </div>
-            <div class="card card-purple">
-                <div class="card-icon"><i class="fa-solid fa-square-poll-vertical"></i></div>
-                <div class="card-info">
-                    <h3>94%</h3>
-                    <p>Resolution Rate</p>
-                </div>
-            </div>
-        </section>
+        <!-- MAIN CONTENT -->
+        <main class="main">
 
-        <section class="data-section">
-            <div class="data-table-container">
-                <div class="panel-header">
-                    <h3>Recent Campus Complaints</h3><button class="btn btn-primary">View All</button>
+            <!-- ─── DASHBOARD ─── -->
+            <section class="page active" id="page-dashboard">
+                <div class="page-header">
+                    <div class="page-header-left">
+                        <div class="page-eyebrow">OVERVIEW</div>
+                        <div class="page-title">Resource Overview</div>
+                        <div class="page-subtitle">Real-time campus operations dashboard</div>
+                    </div>
+                    <div class="page-actions">
+                        <button class="btn btn-secondary btn-sm">📥 Export</button>
+                    </div>
                 </div>
-                <div style="overflow-x: auto;">
-                    <table class="data-table">
-                        <thead>
-                            <tr>
-                                <th>Complaint ID</th>
-                                <th>Category</th>
-                                <th>Priority</th>
-                                <th>Status</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>#CMP-8941</td>
-                                <td>Lab Equipment</td>
-                                <td><span class="priority high">High</span></td>
-                                <td><span class="status pending">Pending</span></td>
-                                <td><button class="btn btn-table-action">Update</button></td>
-                            </tr>
-                            <tr>
-                                <td>#CMP-8939</td>
-                                <td>Classroom AC</td>
-                                <td><span class="priority medium">Medium</span></td>
-                                <td><span class="status in-progress">In Progress</span></td>
-                                <td><button class="btn btn-table-action">Update</button></td>
-                            </tr>
-                        </tbody>
-                    </table>
+
+                <!-- Stats -->
+                <div class="stats-grid">
+                    <div class="stat-card scale-in"
+                        style="--accent-color:var(--accent);--accent-bg:rgba(99,102,241,0.1);animation-delay:0s">
+                        <div class="stat-icon">📋</div>
+                        <div class="stat-value" id="admin-stat-total">0</div>
+                        <div class="stat-label">Total Complaints</div>
+                        <div class="stat-change" id="admin-trend-total" style="color: var(--text3);">● Live Data</div>
+                    </div>
+                    <div class="stat-card scale-in"
+                        style="--accent-color:var(--yellow);--accent-bg:rgba(251,191,36,0.1);animation-delay:0.1s">
+                        <div class="stat-icon">⏳</div>
+                        <div class="stat-value" id="admin-stat-pending">0</div>
+                        <div class="stat-label">Pending</div>
+                        <div class="stat-change" id="admin-trend-pending" style="color: var(--text3);">● Live Data</div>
+                    </div>
+                    <div class="stat-card scale-in"
+                        style="--accent-color:var(--green);--accent-bg:rgba(74,222,128,0.1);animation-delay:0.2s">
+                        <div class="stat-icon">✅</div>
+                        <div class="stat-value" id="admin-stat-resolved">0</div>
+                        <div class="stat-label">Resolved</div>
+                        <div class="stat-change" id="admin-trend-resolved" style="color: var(--text3);">● Live Data</div>
+                    </div>
+                    <div class="stat-card scale-in"
+                        style="--accent-color:var(--red);--accent-bg:rgba(248,113,113,0.1);animation-delay:0.3s">
+                        <div class="stat-icon">🏛️</div>
+                        <div class="stat-value" id="admin-stat-bookings">0</div>
+                        <div class="stat-label">Active Bookings</div>
+                        <div class="stat-change" id="admin-trend-bookings" style="color: var(--text3);">● Live Data</div>
+                    </div>
+                </div>
+
+                <!-- Charts Row -->
+                <div class="grid-2-1" style="margin-bottom:16px">
+                    <!-- Complaint Viz + Trend -->
+                    <div style="display:flex;flex-direction:column;gap:16px">
+                        <div class="card">
+                            <div class="card-title">Complaint Visualization</div>
+                            <div style="display:flex;gap:24px;align-items:center">
+                                <div style="position:relative;flex-shrink:0">
+                                    <div class="donut-chart">
+                                        <div class="donut-center"><span>53</span></div>
+                                    </div>
+                                </div>
+                                <div class="donut-legend" style="flex:1">
+                                    <div class="legend-item">
+                                        <div class="legend-dot" style="background:var(--accent)"></div>Computer (35%)
+                                    </div>
+                                    <div class="legend-item">
+                                        <div class="legend-dot" style="background:var(--cyan)"></div>Solar Lab (25%)
+                                    </div>
+                                    <div class="legend-item">
+                                        <div class="legend-dot" style="background:var(--yellow)"></div>Classroom (20%)
+                                    </div>
+                                    <div class="legend-item">
+                                        <div class="legend-dot" style="background:var(--pink)"></div>Projectors (20%)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-title">Trend Chart</div>
+                            <canvas id="trendChart" height="130"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Activity Feed -->
+                    <div class="card" style="max-height:420px;overflow-y:auto">
+                        <div class="card-title">Activity Feed <span
+                                style="float:right;font-size:11px;color:var(--green);cursor:pointer">Live ●</span></div>
+                        <div class="activity-list" id="activity-list"></div>
+                    </div>
+                </div>
+
+                <!-- System Progress & Live Feed -->
+                <div class="card" style="margin-bottom:16px">
+                    <div class="card-title">System Updates in Progress</div>
+                    <div id="progress-bars"></div>
+                    <div class="live-feed">
+                        <div class="live-feed-label">
+                            <div class="live-dot"></div>Live Data Feed
+                        </div>
+                        <div class="live-text" id="live-text"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ─── COMPLAINT MANAGEMENT ─── -->
+            <section class="page" id="page-complaints">
+                <div class="page-header">
+                    <div class="page-header-left">
+                        <div class="page-eyebrow">COMPLAINTS</div>
+                        <div class="page-title">Complaint Management</div>
+                        <div class="page-subtitle" id="complaint-type-text">Showing all complaints</div>
+                    </div>
+                    <div class="page-actions">
+                        <button class="btn btn-secondary btn-sm">📥 Export CSV</button>
+                        <button class="btn btn-primary btn-sm" onclick="openModal('add-complaint-modal')">+ New
+                            Complaint</button>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="filter-bar">
+                        <div class="filter-search">
+                            <span style="color:var(--text3)">🔍</span>
+                            <input type="text" placeholder="Search by Complaint ID, resource..." id="complaint-search"
+                                oninput="filterComplaints()">
+                        </div>
+                        <select class="filter-select" id="filter-category" onchange="filterComplaints()">
+                            <option value="">All Categories</option>
+                            <option>Computer</option>
+                            <option>Classroom</option>
+                            <option>Projector</option>
+                            <option>3D Printer</option>
+                            <option>Equipment</option>
+                        </select>
+                        <select class="filter-select" id="filter-status" onchange="filterComplaints()">
+                            <option value="">All Statuses</option>
+                            <option>Open</option>
+                            <option>Assigned</option>
+                            <option>Resolved</option>
+                            <option>Escalated</option>
+                            <option>Closed</option>
+                        </select>
+                        <select class="filter-select" id="filter-priority" onchange="filterComplaints()">
+                            <option value="">All Priorities</option>
+                            <option>High</option>
+                            <option>Medium</option>
+                            <option>Low</option>
+                        </select>
+                        <button class="btn btn-secondary btn-sm" onclick="resetFilters()">✕ Clear</button>
+                    </div>
+                    <div class="table-wrapper">
+                        <table id="complaints-table">
+                            <thead>
+                                <tr>
+                                    <th>Complaint ID</th>
+                                    <th>Date & Time</th>
+                                    <th>Type</th>
+                                    <th>Resource</th>
+                                    <th>Location</th>
+                                    <th>Priority</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="complaints-tbody"></tbody>
+                        </table>
+                    </div>
+                    <div class="pagination">
+                        <div class="page-info" id="complaint-count"></div>
+                        <div class="page-btn" onclick="changePage(-1)">‹</div>
+                        <div class="page-btn active">1</div>
+                        <div class="page-btn">2</div>
+                        <div class="page-btn">3</div>
+                        <div class="page-btn" onclick="changePage(1)">›</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ─── RESOURCE MANAGEMENT ─── -->
+            <section class="page" id="page-resources">
+                <div class="page-header">
+                    <div class="page-header-left">
+                        <div class="page-eyebrow">RESOURCES</div>
+                        <div class="page-title">Resource Management</div>
+                        <div class="page-subtitle">Manage classrooms, labs, and equipment</div>
+                    </div>
+                    <div class="page-actions">
+                        <button class="btn btn-secondary btn-sm">📊 Usage Report</button>
+                        <button class="btn btn-primary btn-sm">+ Add Resource</button>
+                    </div>
+                </div>
+                <!-- Calendar + Transmission -->
+                <div class="grid-2" style="margin-bottom:16px">
+                    <div class="card">
+                        <div class="cal-header">
+                            <h3 id="cal-month-year">June 2026</h3>
+                            <div style="display:flex;gap:12px;align-items:center">
+                                <select class="filter-select" style="font-size:11px;padding:5px 8px">
+                                    <option>All Resources</option>
+                                    <option>Lab 1</option>
+                                    <option>Projectors</option>
+                                    <option>Lab 4</option>
+                                </select>
+                                <div class="cal-nav">
+                                    <button class="cal-nav-btn" onclick="calNav(-1)">‹</button>
+                                    <button class="cal-nav-btn" onclick="calNav(1)">›</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cal-grid" id="cal-grid"></div>
+                    </div>
+                    <div class="card">
+                        <div class="card-title">Network / Transmission Status</div>
+                        <canvas id="transmissionChart" height="180"></canvas>
+                    </div>
+                </div>
+                <!-- Resource Cards -->
+                <div id="admin-resources-container" style="display:flex;flex-direction:column;gap:16px;margin-bottom:16px;">
+                                    <!-- Live resources will be injected here -->
+                </div>               
+                <!-- Vision + PDF Generator -->
+                <div class="grid-2">
+                <div class="card">
+                <div class="card-title">⚡ Quick Actions</div>
+                <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px">
+                    <button class="btn btn-primary">
+                        ➕ Add Resource
+                    </button>
+                    <button class="btn btn-secondary" onclick="showPage('complaints', null)">
+                        📋 Complaints
+                    </button>
+                    <button class="btn btn-secondary" onclick="showPage('approvals', null)">
+                        ✅ Booking Approval
+                    </button>
+                    <button class="btn btn-secondary" onclick="showPage('users', null)">
+                        👥 Users
+                    </button>
+                    <button class="btn btn-secondary" onclick="showPage('notifications', null)">
+                        🔔 Notifications
+                    </button>
+                    <button class="btn btn-secondary">
+                        📊 Export Report
+                    </button>
                 </div>
             </div>
-        </section>
-    </main>
+                    <div class="card">
+                        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
+                            <div class="card-title" style="margin:0">PDF Generator</div>
+                            <button class="btn btn-primary btn-sm" onclick="alert('PDF report generated!')">📄 Generate
+                                PDF</button>
+                        </div>
+                        <div
+                            style="background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:16px">
+                            <canvas id="pdfPreviewChart" height="100"></canvas>
+                            <div style="text-align:center;font-size:11px;color:var(--text3);margin-top:8px">Campus
+                                Resource Utilization (Quarterly)</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- ─── APPROVALS ─── -->
+            <section class="page" id="page-approvals">
+                <div class="page-header">
+                    <div class="page-header-left">
+                        <div class="page-eyebrow">APPROVALS</div>
+                        <div class="page-title">Booking Approval</div>
+                        <div class="page-subtitle">Review and manage booking requests</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Request ID</th>
+                                    <th>Student</th>
+                                    <th>Resource</th>
+                                    <th>Date</th>
+                                    <th>Time Slot</th>
+                                    <th>Purpose</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="approvals-tbody"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ─── STATISTICS ─── -->
+            <section class="page" id="page-statistics">
+                <div class="page-header">
+                    <div class="page-header-left">
+                        <div class="page-eyebrow">ANALYTICS</div>
+                        <div class="page-title">View Statistics</div>
+                        <div class="page-subtitle">Comprehensive campus analytics</div>
+                    </div>
+                    <div class="page-actions">
+                        <button class="btn btn-secondary btn-sm">📅 Last 30 Days</button>
+                        <button class="btn btn-primary btn-sm">📥 Export Report</button>
+                    </div>
+                </div>
+                <div class="stats-grid" style="margin-bottom:20px">
+                    <div class="stat-card" style="--accent-color:var(--accent);--accent-bg:rgba(99,102,241,0.1)">
+                        <div class="stat-icon">📈</div>
+                        <div class="stat-value">94%</div>
+                        <div class="stat-label">Resolution Rate</div>
+                        <div class="stat-change up">↑ 6% vs last month</div>
+                    </div>
+                    <div class="stat-card" style="--accent-color:var(--cyan);--accent-bg:rgba(34,211,238,0.1)">
+                        <div class="stat-icon">⚡</div>
+                        <div class="stat-value">2.4h</div>
+                        <div class="stat-label">Avg Response Time</div>
+                        <div class="stat-change up">↓ 0.8h improved</div>
+                    </div>
+                    <div class="stat-card" style="--accent-color:var(--yellow);--accent-bg:rgba(251,191,36,0.1)">
+                        <div class="stat-icon">⭐</div>
+                        <div class="stat-value">4.7</div>
+                        <div class="stat-label">Satisfaction Score</div>
+                        <div class="stat-change up">↑ 0.2 this quarter</div>
+                    </div>
+                    <div class="stat-card" style="--accent-color:var(--green);--accent-bg:rgba(74,222,128,0.1)">
+                        <div class="stat-icon">👥</div>
+                        <div class="stat-value">284</div>
+                        <div class="stat-label">Active Users</div>
+                        <div class="stat-change up">↑ 18 new this week</div>
+                    </div>
+                </div>
+                <div class="grid-2">
+                    <div class="card">
+                        <div class="card-title">Monthly Complaints Overview</div><canvas id="statsBarChart"
+                            height="180"></canvas>
+                    </div>
+                    <div class="card">
+                        <div class="card-title">Category Distribution</div><canvas id="statsPieChart"
+                            height="180"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ─── NOTIFICATIONS ─── -->
+            <section class="page" id="page-notifications">
+                <div class="page-header">
+                    <div class="page-header-left">
+                        <div class="page-eyebrow">ALERTS</div>
+                        <div class="page-title">Notifications</div>
+                        <div class="page-subtitle">Stay updated on campus activity</div>
+                    </div>
+                    <div class="page-actions">
+                        <button class="btn btn-secondary btn-sm" onclick="markAllRead()">✓ Mark All Read</button>
+                    </div>
+                </div>
+                <div id="notif-list"></div>
+            </section>
+
+            <!-- ─── USERS ─── -->
+            <section class="page" id="page-users">
+                <div class="page-header">
+                    <div class="page-header-left">
+                        <div class="page-eyebrow">MANAGEMENT</div>
+                        <div class="page-title">User Management</div>
+                        <div class="page-subtitle">Students, staff, and administrators</div>
+                    </div>
+                    <div class="page-actions">
+                        <button class="btn btn-primary btn-sm" onclick="openModal('add-user-modal')">+ Add User</button>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="filter-bar">
+                        <div class="filter-search"><span style="color:var(--text3)">🔍</span><input type="text"
+                                placeholder="Search users..."></div>
+                        <select class="filter-select">
+                            <option>All Roles</option>
+                            <option>Student</option>
+                            <option>Staff</option>
+                            <option>Admin</option>
+                        </select>
+                    </div>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Role</th>
+                                    <th>Joined</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="users-tbody"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ─── SETTINGS ─── -->
+            <section class="page" id="page-settings">
+                <div class="page-header">
+                    <div class="page-header-left">
+                        <div class="page-eyebrow">SYSTEM</div>
+                        <div class="page-title">Settings</div>
+                        <div class="page-subtitle">Configure your admin portal</div>
+                    </div>
+                </div>
+                <div class="grid-2">
+                    <div class="card">
+                        <div class="card-title">Profile Settings</div>
+                        <div class="profile-header" style="border:none;padding:0;margin-bottom:16px">
+                            <div class="profile-avatar-large">A</div>
+                            <div class="profile-info">
+                                <div class="profile-name">Admin User</div>
+                                <div class="profile-role">● Super Admin</div>
+                                <div class="profile-meta"><span>📧 admin@campus.edu</span><span>🏛️ Campus HQ</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-bottom:12px"><label>DISPLAY NAME</label><input
+                                class="form-input" value="Admin User"></div>
+                        <div class="form-group" style="margin-bottom:12px"><label>EMAIL</label><input class="form-input"
+                                value="admin@campus.edu"></div>
+                        <button class="btn btn-primary" style="margin-top:8px">Save Changes</button>
+                    </div>
+                    <div class="card">
+                        <div class="card-title">Notification Preferences</div>
+                        <div style="display:flex;flex-direction:column;gap:14px">
+                            <div
+                                style="display:flex;justify-content:space-between;align-items:center;padding:12px;background:var(--bg3);border-radius:10px">
+                                <div>
+                                    <div style="font-size:13px;font-weight:500;color:var(--text)">Email Alerts</div>
+                                    <div style="font-size:11px;color:var(--text3)">Receive complaint updates via email
+                                    </div>
+                                </div>
+                                <div class="toggle-track on" onclick="this.classList.toggle('on')"
+                                    style="cursor:pointer">
+                                    <div class="toggle-thumb"></div>
+                                </div>
+                            </div>
+                            <div
+                                style="display:flex;justify-content:space-between;align-items:center;padding:12px;background:var(--bg3);border-radius:10px">
+                                <div>
+                                    <div style="font-size:13px;font-weight:500;color:var(--text)">Push Notifications
+                                    </div>
+                                    <div style="font-size:11px;color:var(--text3)">Browser notifications for new
+                                        complaints</div>
+                                </div>
+                                <div class="toggle-track" onclick="this.classList.toggle('on')" style="cursor:pointer">
+                                    <div class="toggle-thumb"></div>
+                                </div>
+                            </div>
+                            <div
+                                style="display:flex;justify-content:space-between;align-items:center;padding:12px;background:var(--bg3);border-radius:10px">
+                                <div>
+                                    <div style="font-size:13px;font-weight:500;color:var(--text)">Booking Approvals
+                                    </div>
+                                    <div style="font-size:11px;color:var(--text3)">Alert when new booking needs approval
+                                    </div>
+                                </div>
+                                <div class="toggle-track on" onclick="this.classList.toggle('on')"
+                                    style="cursor:pointer">
+                                    <div class="toggle-thumb"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- ═══════════════ MODALS ═══════════════ -->
+    <div class="modal-overlay" id="add-complaint-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <div class="modal-title">📋 New Complaint</div>
+                <button class="modal-close" onclick="closeModal('add-complaint-modal')">✕</button>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:12px">
+                <div class="form-group"><label>STUDENT ID</label><input class="form-input"
+                        placeholder="e.g. STU-2024-001"></div>
+                <div class="form-group"><label>CATEGORY</label>
+                    <select class="form-input">
+                        <option>Computer</option>
+                        <option>Classroom</option>
+                        <option>Projector</option>
+                        <option>3D Printer</option>
+                        <option>Equipment</option>
+                    </select>
+                </div>
+                <div class="form-group"><label>RESOURCE</label><input class="form-input"
+                        placeholder="e.g. Computer Lab 3"></div>
+                <div class="form-group"><label>PRIORITY</label>
+                    <select class="form-input">
+                        <option>Low</option>
+                        <option selected>Medium</option>
+                        <option>High</option>
+                    </select>
+                </div>
+                <div class="form-group"><label>DESCRIPTION</label><textarea class="form-input" rows="3"
+                        placeholder="Describe the issue..."></textarea></div>
+                <div style="display:flex;gap:10px;margin-top:4px">
+                    <button class="btn btn-primary" style="flex:1" onclick="addComplaint()">Submit Complaint</button>
+                    <button class="btn btn-secondary" onclick="closeModal('add-complaint-modal')">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="book-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <div class="modal-title">📅 Book Resource</div>
+                <button class="modal-close" onclick="closeModal('book-modal')">✕</button>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:12px">
+                <div class="form-group"><label>RESOURCE TYPE</label>
+                    <select class="form-input">
+                        <option>Classroom</option>
+                        <option>Computer Lab</option>
+                        <option>3D Printer</option>
+                        <option>Projector</option>
+                        <option>Book Lab</option>
+                    </select>
+                </div>
+                <div class="form-group"><label>DATE</label><input class="form-input" type="date"></div>
+                <div class="form-group"><label>TIME SLOT</label>
+                    <select class="form-input">
+                        <option>08:00–10:00</option>
+                        <option>10:00–12:00</option>
+                        <option>13:00–15:00</option>
+                        <option>15:00–17:00</option>
+                    </select>
+                </div>
+                <div class="form-group"><label>PURPOSE</label><textarea class="form-input" rows="2"
+                        placeholder="Purpose of booking..."></textarea></div>
+                <div style="display:flex;gap:10px;margin-top:4px">
+                    <button class="btn btn-primary" style="flex:1"
+                        onclick="closeModal('book-modal');alert('Booking submitted for approval!')">Confirm
+                        Booking</button>
+                    <button class="btn btn-secondary" onclick="closeModal('book-modal')">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-overlay" id="add-user-modal">
+    <div class="modal">
+        <div class="modal-header">
+            <div class="modal-title">👥 Add New Student</div>
+            <button class="modal-close" onclick="closeModal('add-user-modal')">✕</button>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px">
+            <div class="form-group">
+                <label>FULL NAME</label>
+                <input type="text" id="newUserName" class="form-input" placeholder="e.g. John Doe">
+            </div>
+            <div class="form-group">
+                <label>EMAIL</label>
+                <input type="email" id="newUserEmail" class="form-input" placeholder="student@campus.edu">
+            </div>
+            <div class="form-group">
+                <label>ROLL NUMBER</label>
+                <div style="display: flex; gap: 8px;">
+                    <select id="newUserBranch" class="form-input" style="width: 80px; padding: 12px 8px;">
+                        <option value="IT">IT</option>
+                        <option value="CS">CS</option>
+                        <option value="EE">EE</option>
+                        <option value="ME">ME</option>
+                        <option value="CE">CE</option>
+                    </select>
+                    <input type="text" id="newUserYear" class="form-input" placeholder="YY" maxlength="2" style="width: 60px; text-align: center;">
+                    <input type="text" id="newUserRollId" class="form-input" placeholder="No." maxlength="3" style="flex: 1;">
+                </div>
+            </div>
+<div class="form-group">
+    <label>TEMPORARY PASSWORD</label>
+    <div class="password-wrapper">
+        <input type="password" id="newUserPassword" class="form-input" placeholder="••••••••">
+        <span class="password-toggle" id="toggle-new-user-pass" onclick="togglePassword('newUserPassword', 'toggle-new-user-pass')">👁️</span>
+    </div>
+</div>
+            <div style="display:flex;gap:10px;margin-top:8px">
+                <button class="btn btn-primary" style="flex:1" onclick="submitNewUser()">Create User</button>
+                <button class="btn btn-secondary" onclick="closeModal('add-user-modal')">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
     <script src="script.js"></script>
+    
 </body>
 
 </html>

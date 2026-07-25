@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Smart Campus — Login Portal</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="login.css" />
+  </head>
+
+  <body>
+    <!-- ═══════════════ LOGIN SCREEN ═══════════════ -->
+    <div id="login-screen">
+      <div class="login-bg-stars" id="stars"></div>
+      <div class="login-card">
+        <div class="login-left">
+          <div class="login-logo">
+            <div class="login-logo-icon">🎓</div>
+            <div>
+              <div class="login-logo-text">Smart Campus</div>
+              <div
+                style="
+                  font-size: 10px;
+                  color: var(--text3);
+                  letter-spacing: 1px;
+                "
+              >
+                MANAGEMENT SYSTEM
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="login-title">
+              Welcome to the<br /><span>Smart Campus Portal</span>
+            </div>
+            <div class="login-subtitle" style="margin-top: 8px">
+              Full control over complaints, resources & campus operations.
+            </div>
+          </div>
+          <div class="login-features">
+            <div class="login-feature">
+              <div class="login-feature-dot"></div>
+              User Authentication & Roles
+            </div>
+            <div class="login-feature">
+              <div
+                class="login-feature-dot"
+                style="
+                  background: var(--green);
+                  box-shadow: 0 0 8px var(--green);
+                "
+              ></div>
+              Real-time Complaint Tracking
+            </div>
+            <div class="login-feature">
+              <div
+                class="login-feature-dot"
+                style="
+                  background: var(--yellow);
+                  box-shadow: 0 0 8px var(--yellow);
+                "
+              ></div>
+              Resource Booking & Calendar
+            </div>
+            <div class="login-feature">
+              <div
+                class="login-feature-dot"
+                style="background: var(--pink); box-shadow: 0 0 8px var(--pink)"
+              ></div>
+              Analytics & Reports
+            </div>
+          </div>
+        </div>
+
+        <div class="login-right">
+          <div>
+            <h2>Login</h2>
+            <p>Sign in to manage your campus</p>
+          </div>
+          <div class="form-group">
+            <label>USERNAME / EMAIL</label>
+            <input
+              type="text"
+              class="form-input"
+              placeholder="e.g. EE2551 or student@campus.edu"
+              id="login-user"
+            />
+          </div>
+          <div class="form-group">
+            <label>PASSWORD</label>
+            <div class="password-wrapper">
+              <input
+                type="password"
+                class="form-input"
+                placeholder="••••••••••"
+                id="login-pass"
+              />
+              <span
+                class="password-toggle"
+                id="toggle-login-pass"
+                onclick="togglePassword('login-pass', 'toggle-login-pass')"
+                >👁️</span
+              >
+            </div>
+          </div>
+          <label class="login-check"
+            ><input type="checkbox" checked id="remember-me" /> Remember
+            me</label
+          >
+          <button class="btn-login" onclick="doLogin()" id="login-btn">
+            Login
+          </button>
+          <div class="forgot" onclick="openForgotPassword()">
+            Forgot Password?
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════ FORGOT / RESET PASSWORD MODAL ═══════════════ -->
+<div class="forgot-modal" id="forgotModal">
+    <div class="forgot-box" style="width: 440px;">
+        <h2>Reset Password</h2>
+        <p id="modal-instruction">Enter your email to receive a verification OTP.</p>
+        <div id="status-msg" style="color: var(--green); font-size: 12px; margin-bottom: 10px;"></div>
+
+        <!-- STEP 1: EMAIL INPUT -->
+        <div id="email-section">
+            <div class="form-group" style="margin-bottom: 12px;">
+                <label>REGISTERED EMAIL</label>
+                <div style="display: flex; gap: 8px;">
+                    <input type="email" id="forgotEmail" class="form-input" placeholder="student@campus.edu">
+                    <button class="btn-login" type="button" onclick="sendOTP()" id="send-otp-btn" style="white-space: nowrap; padding: 0 14px;">
+                        Get OTP
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- STEP 2: ENTER OTP -->
+        <div id="otp-verify-section" class="hidden" style="display: none;">
+            <div class="form-group" style="margin-bottom: 12px;">
+                <label>ENTER 6-DIGIT OTP</label>
+                <div style="display: flex; gap: 8px;">
+                    <input type="text" id="otpInput" class="form-input" placeholder="e.g. 123456" maxlength="6">
+                    <button class="btn-login" type="button" onclick="verifyOTPCode()" id="verify-otp-btn" style="white-space: nowrap; padding: 0 14px;">
+                        Verify OTP
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- STEP 3: NEW PASSWORD -->
+        <div id="password-reset-section" class="hidden" style="display: none;">
+            <div class="form-group" style="margin-bottom: 16px;">
+                <label>NEW PASSWORD</label>
+                <div class="password-wrapper">
+                    <input type="password" id="newPasswordInput" class="form-input" placeholder="••••••••••">
+                    <span class="password-toggle" id="toggle-new-pass" onclick="togglePassword('newPasswordInput', 'toggle-new-pass')">👁️</span>
+                </div>
+            </div>
+            <button class="btn-login" style="width: 100%;" onclick="submitNewPassword()" id="reset-pass-btn">
+                Reset Password
+            </button>
+        </div>
+
+        <!-- ACTION BUTTONS -->
+        <div class="forgot-buttons" style="margin-top: 16px;">
+            <button class="cancel-btn" type="button" onclick="closeForgotPassword()" style="width: 100%;">
+                Cancel
+            </button>
+        </div>
+    </div>
+</div>
+
+    <script src="login.js"></script>
+  </body>
+</html>
