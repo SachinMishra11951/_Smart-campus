@@ -1,18 +1,17 @@
+<!--  (Student Portal) -->
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Smart Campus — Student Portal</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-
 <body>
-
+    <!-- Feature: Application Wrapper and Sidebar Layout -->
     <div id="app">
-        <!-- SIDEBAR -->
         <aside class="sidebar">
             <div class="sidebar-logo">
                 <div class="sidebar-logo-icon">🎓</div>
@@ -60,7 +59,7 @@
             </div>
         </aside>
 
-        <!-- HEADER -->
+        <!-- Feature: Top Header with Universal Search -->
         <header class="header">
             <div class="header-title" id="header-title">DASHBOARD</div>
             <div class="header-search">
@@ -82,10 +81,8 @@
             </div>
         </header>
 
-        <!-- MAIN CONTENT -->
+        <!-- Feature: Primary View Router Containers -->
         <main class="main">
-
-            <!-- ─── DASHBOARD ─── -->
             <section class="page active" id="page-dashboard">
                 <div class="page-header">
                     <div class="page-header-left">
@@ -98,7 +95,6 @@
                     </div>
                 </div>
 
-                <!-- Stats Grid -->
                 <div class="stats-grid">
                     <div class="stat-card scale-in" style="--accent-color:var(--accent);--accent-bg:rgba(99,102,241,0.1);animation-delay:0s">
                         <div class="stat-icon">📋</div>
@@ -113,23 +109,21 @@
                         <div class="stat-change" style="color: var(--text3);">● Live Data</div>
                     </div>
                     <div class="stat-card scale-in" style="--accent-color:var(--green);--accent-bg:rgba(74,222,128,0.1);animation-delay:0.2s">
-     <div class="stat-icon">✅</div>
-<div class="stat-value" id="student-stat-resolved">0</div>
-<div class="stat-label">Resolved</div>
-<div class="stat-change" style="color: var(--text3);">● Live Data</div>
+                        <div class="stat-icon">✅</div>
+                        <div class="stat-value" id="student-stat-resolved">0</div>
+                        <div class="stat-label">Resolved</div>
+                        <div class="stat-change" style="color: var(--text3);">● Live Data</div>
                     </div>
                     <div class="stat-card scale-in" style="--accent-color:var(--cyan);--accent-bg:rgba(34,211,238,0.1);animation-delay:0.3s">
-<div class="stat-icon">🏛️</div>
-<div class="stat-value" id="student-stat-bookings">0</div>
-<div class="stat-label">Active Bookings</div>
-<div class="stat-change" style="color: var(--text3);">● Live Data</div>
+                        <div class="stat-icon">🏛️</div>
+                        <div class="stat-value" id="student-stat-bookings">0</div>
+                        <div class="stat-label">Active Bookings</div>
+                        <div class="stat-change" style="color: var(--text3);">● Live Data</div>
                     </div>
                 </div>
 
-                <!-- Content Grid -->
                 <div class="grid-2-1" style="margin-bottom:16px">
                     <div style="display:flex;flex-direction:column;gap:16px">
-                        <!-- Recent Complaints Table Card -->
                         <div class="card">
                             <div class="card-title">Recent Complaint Activity</div>
                             <div class="table-wrapper">
@@ -146,14 +140,14 @@
                                 </table>
                             </div>
                         </div>
-                        <!-- Analytics Chart -->
                         <div class="card">
                             <div class="card-title">Complaint Status Distribution</div>
-                            <canvas id="studentComplaintChart" height="130"></canvas>
+                            <div style="position: relative; height: 160px; width: 100%; display: flex; justify-content: center; align-items: center;">
+                                <canvas id="studentComplaintChart"></canvas>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- Right Column: Quick Actions & Live Activity Feed -->
                     <div style="display:flex;flex-direction:column;gap:16px">
                         <div class="card">
                             <div class="card-title">⚡ Quick Actions</div>
@@ -171,7 +165,6 @@
                     </div>
                 </div>
 
-                <!-- Live Status Marquee -->
                 <div class="card">
                     <div class="live-feed">
                         <div class="live-feed-label">
@@ -182,7 +175,6 @@
                 </div>
             </section>
 
-            <!-- ─── MY COMPLAINTS ─── -->
             <section class="page" id="page-myComplaints">
                 <div class="page-header">
                     <div class="page-header-left">
@@ -213,7 +205,6 @@
                 </div>
             </section>
 
-            <!-- ─── MY BOOKINGS ─── -->
             <section class="page" id="page-myBookings">
                 <div class="page-header">
                     <div class="page-header-left">
@@ -244,7 +235,6 @@
                 </div>
             </section>
 
-            <!-- ─── NOTIFICATIONS ─── -->
             <section class="page" id="page-notifications">
                 <div class="page-header">
                     <div class="page-header-left">
@@ -256,7 +246,6 @@
                 <div id="student-notif-list"></div>
             </section>
 
-            <!-- ─── SETTINGS ─── -->
             <section class="page" id="page-settings">
                 <div class="page-header">
                     <div class="page-header-left">
@@ -272,36 +261,27 @@
                             <div class="profile-role">● Student Portal</div>
                         </div>
                     </div>
-<div style="display:flex;flex-direction:column;gap:12px">
-                        <div class="form-group"><label style="font-size:11px;color:var(--text3)">DISPLAY NAME</label><input class="filter-select" id="settingInputName" value="Student" style="width:100%"></div>
-                        
-                        <div class="form-group"><label style="font-size:11px;color:var(--text3)">EMAIL</label><input class="filter-select" value="student@campus.edu" readonly style="width:100%; opacity: 0.7; cursor: not-allowed;"></div>
-                        
-                        <!-- NEW ROLL NUMBER INPUT FOR STUDENTS -->
+                    <div style="display:flex;flex-direction:column;gap:12px">
+                        <div class="form-group">
+                            <label style="font-size:11px;color:var(--text3)">DISPLAY NAME</label>
+                            <input class="filter-select" id="settingInputName" value="Student" style="width:100%">
+                        </div>
+                        <div class="form-group">
+                            <label style="font-size:11px;color:var(--text3)">EMAIL</label>
+                            <input type="email" id="settingInputEmail" class="filter-select" placeholder="student@campus.edu" style="width:100%;">
+                        </div>
                         <div class="form-group">
                             <label style="font-size:11px;color:var(--text3)">ROLL NUMBER</label>
-                            <div style="display: flex; gap: 8px;">
-                                <select id="settingBranch" class="filter-select" style="width: 80px;">
-                                    <option value="IT">IT</option>
-                                    <option value="CS">CS</option>
-                                    <option value="EE">EE</option>
-                                    <option value="ME">ME</option>
-                                    <option value="CE">CE</option>
-                                </select>
-                                <input type="text" id="settingYear" class="filter-select" placeholder="YY" maxlength="2" style="width: 60px; text-align: center;">
-                                <input type="text" id="settingRollId" class="filter-select" placeholder="No." maxlength="3" style="flex: 1;">
-                            </div>
+                            <input type="text" id="settingRollDisplay" class="filter-select" value="Loading..." readonly style="width:100%; opacity: 0.7; cursor: not-allowed;">
                         </div>
                         <button class="btn btn-primary" style="margin-top:8px" onclick="saveSettings()">Save Changes</button>
                     </div>
                 </div>
             </section>
-
         </main>
     </div>
 
-
-<!-- ═══════════════ MODALS ═══════════════ -->
+    <!-- Feature: User Input Modals Overlay System -->
     <div class="modal-overlay" id="raise-complaint-modal">
         <div class="modal">
             <div class="modal-header">
@@ -313,7 +293,7 @@
                     <label style="font-size:11px;color:var(--text3);margin-bottom:4px;display:block">COMPLAINT TITLE</label>
                     <input class="filter-select" id="compTitle" placeholder="e.g. Wi-Fi router not working in Lab 2" style="width:100%">
                 </div>
-   <div>
+                <div>
                     <label style="font-size:11px;color:var(--text3);margin-bottom:4px;display:block">CATEGORY</label>
                     <select class="filter-select" id="compCategory" style="width:100%">
                         <option value="IT/CSE">Computer Lab / Wi-Fi</option>
@@ -375,5 +355,4 @@
 
     <script src="script.js"></script>
 </body>
-
 </html>

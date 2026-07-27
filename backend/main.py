@@ -20,6 +20,7 @@ Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
+# Feature: Middleware Setup Definition
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
@@ -46,6 +47,7 @@ def get_me(current_user = Depends(get_current_user)):
 def home():
     return {"message": "Welcome to the Smart Campuse Management System"}
 
+# Feature: Web Request Action Handlers
 @app.post("/login")
 def login(form_data = Depends(OAuth2PasswordRequestForm)):
     session = Sessionlocal()
@@ -145,6 +147,7 @@ def reset_password(data: ResetPasswordRequest):
         "message": "Password reset successfully"
     }
 
+# Feature: Backend Controllers for Main Complaint Accesses
 @app.get("/complaints")
 def get_complaints(current_user = Depends(get_current_user)):
     session = Sessionlocal()
@@ -262,6 +265,7 @@ def student_create_complaint(complaint: ComplaintCreate, current_user = Depends(
         "id": id
     }
 
+# Feature: Active System Configuration Methods
 @app.post("/users")
 def create_user(user: UserCreate):
     session = Sessionlocal()
@@ -432,7 +436,7 @@ def get_resources():
             "available_quantity": r.available_quantity
         })
     session.close()
-    return {"resources": ans}  # Returned lowercase 'resources' for JavaScript matching
+    return {"resources": ans} 
 
 @app.get("/resources/{resource_id}")
 def get_resource(resource_id: int):
@@ -709,6 +713,7 @@ def admin_delete_booking(booking_id: int, current_user = Depends(get_current_adm
         detail="Booking not found"
     )    
 
+# Feature: User and Record Specific Fetch Handlers
 @app.get("/users/{user_id}/complaints")
 def get_users_complaint(user_id: int, current_user = Depends(get_current_user)):
     session = Sessionlocal()
@@ -1014,6 +1019,7 @@ def update_student_booking(booking_id: int, booking: StudentBookingUpdate, curre
         detail="Booking not found"
     )
 
+# Feature: Telemetry and Event Stream Extractors
 @app.get("/notifications")
 def get_notifications(current_user = Depends(get_current_user)):
     session = Sessionlocal()
@@ -1044,7 +1050,6 @@ def mark_notifications_read(current_user = Depends(get_current_user)):
 @app.get("/activities")
 def get_activities(current_user = Depends(get_current_user)):
     session = Sessionlocal()
-    # Fetch the 20 most recent activities for the feed
     acts = session.query(Activity).order_by(Activity.id.desc()).limit(20).all()
     res = []
     for a in acts:

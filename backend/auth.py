@@ -12,6 +12,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+# Feature: Password Hash Controller Logic and Bearer Protocol Setup
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="login")
 
 pwd_context = CryptContext(
@@ -48,6 +49,7 @@ def decode_access_token(jwttoken : str):
                 detail="Invalid or expired token"  
             )
     
+# Feature: Session Role Enforcers and Request Resolvers
 def get_current_user(token: str = Depends(oauth2_scheme)):
     payload = decode_access_token(token)
 
@@ -70,4 +72,4 @@ def get_current_admin(user = Depends(get_current_user)):
     raise HTTPException(
         status_code = 403,
         detail = "Forbidden"
-    )       
+    )

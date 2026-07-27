@@ -1,181 +1,153 @@
 <!doctype html>
 <html lang="en" data-theme="dark">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Smart Campus — Login Portal</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="login.css" />
-  </head>
-
-  <body>
-    <!-- ═══════════════ LOGIN SCREEN ═══════════════ -->
+</head>
+<body>
+    <!-- Feature: Credential-based User Login Interface Shell -->
     <div id="login-screen">
-      <div class="login-bg-stars" id="stars"></div>
-      <div class="login-card">
-        <div class="login-left">
-          <div class="login-logo">
-            <div class="login-logo-icon">🎓</div>
-            <div>
-              <div class="login-logo-text">Smart Campus</div>
-              <div
-                style="
-                  font-size: 10px;
-                  color: var(--text3);
-                  letter-spacing: 1px;
-                "
-              >
-                MANAGEMENT SYSTEM
-              </div>
-            </div>
-          </div>
-          <div>
-            <div class="login-title">
-              Welcome to the<br /><span>Smart Campus Portal</span>
-            </div>
-            <div class="login-subtitle" style="margin-top: 8px">
-              Full control over complaints, resources & campus operations.
-            </div>
-          </div>
-          <div class="login-features">
-            <div class="login-feature">
-              <div class="login-feature-dot"></div>
-              User Authentication & Roles
-            </div>
-            <div class="login-feature">
-              <div
-                class="login-feature-dot"
-                style="
-                  background: var(--green);
-                  box-shadow: 0 0 8px var(--green);
-                "
-              ></div>
-              Real-time Complaint Tracking
-            </div>
-            <div class="login-feature">
-              <div
-                class="login-feature-dot"
-                style="
-                  background: var(--yellow);
-                  box-shadow: 0 0 8px var(--yellow);
-                "
-              ></div>
-              Resource Booking & Calendar
-            </div>
-            <div class="login-feature">
-              <div
-                class="login-feature-dot"
-                style="background: var(--pink); box-shadow: 0 0 8px var(--pink)"
-              ></div>
-              Analytics & Reports
-            </div>
-          </div>
-        </div>
-
-        <div class="login-right">
-          <div>
-            <h2>Login</h2>
-            <p>Sign in to manage your campus</p>
-          </div>
-          <div class="form-group">
-            <label>USERNAME / EMAIL</label>
-            <input
-              type="text"
-              class="form-input"
-              placeholder="e.g. EE2551 or student@campus.edu"
-              id="login-user"
-            />
-          </div>
-          <div class="form-group">
-            <label>PASSWORD</label>
-            <div class="password-wrapper">
-              <input
-                type="password"
-                class="form-input"
-                placeholder="••••••••••"
-                id="login-pass"
-              />
-              <span
-                class="password-toggle"
-                id="toggle-login-pass"
-                onclick="togglePassword('login-pass', 'toggle-login-pass')"
-                >👁️</span
-              >
-            </div>
-          </div>
-          <label class="login-check"
-            ><input type="checkbox" checked id="remember-me" /> Remember
-            me</label
-          >
-          <button class="btn-login" onclick="doLogin()" id="login-btn">
-            Login
-          </button>
-          <div class="forgot" onclick="openForgotPassword()">
-            Forgot Password?
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ═══════════════ FORGOT / RESET PASSWORD MODAL ═══════════════ -->
-<div class="forgot-modal" id="forgotModal">
-    <div class="forgot-box" style="width: 440px;">
-        <h2>Reset Password</h2>
-        <p id="modal-instruction">Enter your email to receive a verification OTP.</p>
-        <div id="status-msg" style="color: var(--green); font-size: 12px; margin-bottom: 10px;"></div>
-
-        <!-- STEP 1: EMAIL INPUT -->
-        <div id="email-section">
-            <div class="form-group" style="margin-bottom: 12px;">
-                <label>REGISTERED EMAIL</label>
-                <div style="display: flex; gap: 8px;">
-                    <input type="email" id="forgotEmail" class="form-input" placeholder="student@campus.edu">
-                    <button class="btn-login" type="button" onclick="sendOTP()" id="send-otp-btn" style="white-space: nowrap; padding: 0 14px;">
-                        Get OTP
-                    </button>
-                </div>
-            </div>
-        </div>
+        <div class="ambient-glow"></div>
+        <div class="ambient-glow glow-2"></div>
+        <div class="login-bg-stars" id="stars"></div>
         
-        <!-- STEP 2: ENTER OTP -->
-        <div id="otp-verify-section" class="hidden" style="display: none;">
-            <div class="form-group" style="margin-bottom: 12px;">
-                <label>ENTER 6-DIGIT OTP</label>
-                <div style="display: flex; gap: 8px;">
-                    <input type="text" id="otpInput" class="form-input" placeholder="e.g. 123456" maxlength="6">
-                    <button class="btn-login" type="button" onclick="verifyOTPCode()" id="verify-otp-btn" style="white-space: nowrap; padding: 0 14px;">
-                        Verify OTP
-                    </button>
+        <div class="login-card">
+            <div class="login-left">
+                <div class="login-logo">
+                    <div class="login-logo-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+                    </div>
+                    <div>
+                        <div class="login-logo-text">Smart Campus</div>
+                        <div class="login-logo-sub">MANAGEMENT SYSTEM</div>
+                    </div>
+                </div>
+                <div class="hero-text-wrapper">
+                    <h1 class="login-title">
+                        Welcome to the<br /><span>Smart Campus Portal</span>
+                    </h1>
+                    <p class="login-subtitle">
+                        Full control over complaints, resources & operations.
+                    </p>
+                </div>
+                <div class="login-features">
+                    <div class="login-feature">
+                        <div class="login-feature-dot cyan"></div>
+                        User Authentication & Roles
+                    </div>
+                    <div class="login-feature">
+                        <div class="login-feature-dot green"></div>
+                        Real-time Complaint Tracking
+                    </div>
+                    <div class="login-feature">
+                        <div class="login-feature-dot yellow"></div>
+                        Resource Booking & Calendar
+                    </div>
+                    <div class="login-feature">
+                        <div class="login-feature-dot pink"></div>
+                        Analytics & Reports
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <!-- STEP 3: NEW PASSWORD -->
-        <div id="password-reset-section" class="hidden" style="display: none;">
-            <div class="form-group" style="margin-bottom: 16px;">
-                <label>NEW PASSWORD</label>
-                <div class="password-wrapper">
-                    <input type="password" id="newPasswordInput" class="form-input" placeholder="••••••••••">
-                    <span class="password-toggle" id="toggle-new-pass" onclick="togglePassword('newPasswordInput', 'toggle-new-pass')">👁️</span>
+            <div class="login-right">
+                <div class="form-header">
+                    <h2>Login</h2>
+                    <p>Sign in to manage your campus</p>
                 </div>
-            </div>
-            <button class="btn-login" style="width: 100%;" onclick="submitNewPassword()" id="reset-pass-btn">
-                Reset Password
-            </button>
-        </div>
+                
+                <div class="form-group">
+                    <label>USERNAME / EMAIL</label>
+                    <input type="text" class="form-input" placeholder="e.g. student@campus.edu" id="login-user" />
+                </div>
+                
+                <div class="form-group">
+                    <label>PASSWORD</label>
+                    <div class="password-wrapper">
+                        <input type="password" class="form-input" placeholder="••••••••••" id="login-pass" />
+                        <button type="button" class="password-toggle" id="toggle-login-pass" onclick="togglePassword('login-pass', 'toggle-login-pass')" aria-label="Toggle Password">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                        </button>
+                    </div>
+                </div>
 
-        <!-- ACTION BUTTONS -->
-        <div class="forgot-buttons" style="margin-top: 16px;">
-            <button class="cancel-btn" type="button" onclick="closeForgotPassword()" style="width: 100%;">
-                Cancel
-            </button>
+                <div class="form-actions">
+                    <label class="login-check">
+                        <input type="checkbox" checked id="remember-me" />
+                        <span class="checkmark"></span>
+                        Remember me
+                    </label>
+                    <span class="forgot" onclick="openForgotPassword()">Forgot Password?</span>
+                </div>
+
+                <button class="btn-primary" onclick="doLogin()" id="login-btn">
+                    <span>Login Securely</span>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </button>
+            </div>
         </div>
     </div>
-</div>
+
+    <!-- Feature: Interactive Password Recovery Utility -->
+    <div class="forgot-modal" id="forgotModal">
+        <div class="forgot-box">
+            <h2>Reset Password</h2>
+            <p id="modal-instruction">Enter your email to receive a verification OTP.</p>
+            
+            <div class="step-indicator">
+                <div class="step-dot active" id="step-dot-1"></div>
+                <div class="step-dot" id="step-dot-2"></div>
+                <div class="step-dot" id="step-dot-3"></div>
+            </div>
+
+            <div id="status-msg" class="msg-box success hidden"></div>
+            <div id="error-msg" class="msg-box error hidden"></div>
+
+            <div id="email-section" class="modal-step active">
+                <div class="form-group">
+                    <label>REGISTERED EMAIL</label>
+                    <input type="email" id="forgotEmail" class="form-input" placeholder="student@campus.edu">
+                </div>
+                <button class="btn-primary w-full" onclick="sendOTP()" id="send-otp-btn">Send Verification Code</button>
+            </div>
+            
+            <div id="otp-verify-section" class="modal-step">
+                <div class="form-group">
+                    <label class="text-center">ENTER 6-DIGIT SECURITY CODE</label>
+                    <div class="otp-container" id="otp-inputs">
+                        <input type="text" class="otp-digit" maxlength="1" pattern="[0-9]*" inputmode="numeric">
+                        <input type="text" class="otp-digit" maxlength="1" pattern="[0-9]*" inputmode="numeric">
+                        <input type="text" class="otp-digit" maxlength="1" pattern="[0-9]*" inputmode="numeric">
+                        <input type="text" class="otp-digit" maxlength="1" pattern="[0-9]*" inputmode="numeric">
+                        <input type="text" class="otp-digit" maxlength="1" pattern="[0-9]*" inputmode="numeric">
+                        <input type="text" class="otp-digit" maxlength="1" pattern="[0-9]*" inputmode="numeric">
+                    </div>
+                </div>
+                <button class="btn-primary w-full mt-3" onclick="verifyOTPCode()" id="verify-otp-btn">Verify Security Code</button>
+            </div>
+
+            <div id="password-reset-section" class="modal-step">
+                <div class="form-group">
+                    <label>NEW PASSWORD</label>
+                    <div class="password-wrapper">
+                        <input type="password" id="newPasswordInput" class="form-input" placeholder="••••••••••">
+                        <button type="button" class="password-toggle" id="toggle-new-pass" onclick="togglePassword('newPasswordInput', 'toggle-new-pass')">
+                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                        </button>
+                    </div>
+                </div>
+                <button class="btn-primary w-full mt-3" onclick="submitNewPassword()" id="reset-pass-btn">Confirm New Password</button>
+            </div>
+
+            <div class="forgot-buttons">
+                <button class="cancel-btn w-full" onclick="closeForgotPassword()" id="close-modal-btn">Cancel Request</button>
+            </div>
+        </div>
+    </div>
 
     <script src="login.js"></script>
-  </body>
+</body>
 </html>

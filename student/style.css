@@ -1,3 +1,5 @@
+/* (Student Portal) */
+/* Feature: CSS Styling Definitions and Theme Scoping */
 :root {
     --bg: #0a0c1a;
     --bg2: #0f1228;
@@ -53,7 +55,7 @@ body {
     min-height: 100vh;
 }
 
-/* SIDEBAR */
+/* Feature: Global Application Structural Overlays */
 .sidebar {
     position: fixed;
     left: 0;
@@ -67,6 +69,31 @@ body {
     flex-direction: column;
 }
 
+.profile-header {
+    display: flex;
+    gap: 16px; 
+    align-items: center;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 20px; 
+    margin-bottom: 20px;
+}
+
+.profile-avatar-large {
+    width: 56px; 
+    height: 56px; 
+    border-radius: 14px; 
+    flex-shrink: 0;
+    background: linear-gradient(135deg, var(--accent), var(--pink));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px; 
+    font-weight: 700;
+    color: white;
+    box-shadow: var(--glow);
+}
 .sidebar-logo {
     padding: 20px 20px 16px;
     display: flex;
@@ -205,7 +232,6 @@ body {
     color: var(--red);
 }
 
-/* HEADER */
 .header {
     position: fixed;
     left: var(--sidebar);
@@ -291,7 +317,6 @@ body {
     justify-content: center;
 }
 
-/* Theme Toggle */
 .theme-toggle {
     display: flex;
     align-items: center;
@@ -303,6 +328,10 @@ body {
     cursor: pointer;
     font-size: 13px;
 }
+
+/* Feature: Global Interactive Status Identifiers */
+.status-pending { background: rgba(251, 191, 36, 0.12); color: var(--yellow); }
+.status-rejected { background: rgba(248, 113, 113, 0.12); color: var(--red); }
 
 .toggle-track {
     width: 40px;
@@ -333,7 +362,6 @@ body {
     left: 20px;
 }
 
-/* MAIN CONTENT LAYOUT */
 .main {
     margin-left: var(--sidebar);
     padding-top: var(--header);
@@ -381,7 +409,6 @@ body {
     margin-top: 4px;
 }
 
-/* BUTTONS */
 .btn {
     display: inline-flex;
     align-items: center;
@@ -418,7 +445,7 @@ body {
 
 .btn-sm { padding: 6px 12px; font-size: 12px; }
 
-/* CARDS & STATS */
+/* Feature: Interactive Component Data Styling */
 .card {
     background: var(--card);
     border: 1px solid var(--border);
@@ -479,7 +506,6 @@ body {
     gap: 16px;
 }
 
-/* TABLES */
 .table-wrapper { overflow-x: auto; }
 table { width: 100%; border-collapse: collapse; font-size: 13px; }
 th {
@@ -511,7 +537,6 @@ td {
 .status-assigned { background: rgba(99, 102, 241, 0.12); color: var(--accent2); }
 .status-resolved { background: rgba(74, 222, 128, 0.12); color: var(--green); }
 
-/* FEEDS */
 .activity-item { display: flex; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--border); }
 .activity-dot { width: 8px; height: 8px; border-radius: 50%; margin-top: 5px; background: var(--cyan); }
 .activity-text { font-size: 12px; color: var(--text2); }
@@ -530,7 +555,6 @@ td {
 .live-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); animation: pulse 1.5s infinite; }
 @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
 
-/* FORM & FILTER INPUTS */
 .filter-select {
     background: var(--bg3);
     border: 1px solid var(--border);
@@ -541,7 +565,6 @@ td {
     outline: none;
 }
 
-/* MODAL */
 .modal-overlay {
     position: fixed;
     inset: 0;
@@ -567,7 +590,6 @@ td {
 .modal-title { font-size: 16px; font-weight: 700; color: var(--text); }
 .modal-close { background: none; border: none; color: var(--text3); cursor: pointer; font-size: 18px; }
 
-/* RESPONSIVE */
 @media(max-width:900px) {
     :root { --sidebar: 64px; }
     .sidebar-logo-text, .sidebar-logo-sub, .nav-section-label, .nav-item span, .nav-badge, .admin-info { display: none; }

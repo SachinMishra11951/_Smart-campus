@@ -78,8 +78,6 @@ class StudentComaplaintUpdate(BaseModel):
     description: Optional[str] = None
     suggested_solution: Optional[str] = None  
 
-
-
 class AdminTempPassUpdate(BaseModel):
     password : str
 

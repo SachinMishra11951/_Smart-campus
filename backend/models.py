@@ -1,7 +1,9 @@
+# Feature: Database Models Configuration
 from database import Base
 from sqlalchemy import *
 from sqlalchemy.orm import relationship 
 
+# Feature: User Data Entity
 class User(Base):
     __tablename__ = "users"
     id = Column(Integer, primary_key=True, index=True)
@@ -15,6 +17,7 @@ class User(Base):
     complaints = relationship("Complaint", back_populates="user")
     bookings = relationship("Booking", back_populates="user")
 
+# Feature: Complaint Data Entity
 class Complaint(Base):
     __tablename__="complaints"
     id=Column(Integer,primary_key=True,index=True)
@@ -28,6 +31,7 @@ class Complaint(Base):
     suggested_solution=Column(String , nullable=True)
     user = relationship("User",back_populates="complaints")
 
+# Feature: Resource Data Entity
 class Resource(Base):
     __tablename__ = "resources"
     id = Column(Integer , primary_key = True)
@@ -36,6 +40,7 @@ class Resource(Base):
     available_quantity = Column(Integer)
     bookings = relationship("Booking" , back_populates = "resource")
 
+# Feature: Booking Data Entity
 class Booking(Base):
     __tablename__ = "bookings"
     id = Column(Integer , primary_key = True)
@@ -49,22 +54,22 @@ class Booking(Base):
     resource = relationship("Resource" , back_populates="bookings")
     user = relationship("User",back_populates="bookings")
 
+# Feature: Notification Data Entity
 class Notification(Base):
     __tablename__ = "notifications"
     id = Column(Integer, primary_key=True, index=True)
     user_id = Column(Integer, ForeignKey("users.id"))
     title = Column(String, nullable=False)
     message = Column(String, nullable=False)
-    type = Column(String)  # e.g., 'complaint', 'booking', 'system'
+    type = Column(String)
     is_read = Column(Boolean, default=False)
     created_at = Column(String)
-    
-    # Relationship back to the User model
     user = relationship("User", backref="notifications")
 
+# Feature: System Activity Log Entity
 class Activity(Base):
     __tablename__ = "activities"
     id = Column(Integer, primary_key=True, index=True)
-    type = Column(String)  # e.g., 'complaint', 'booking', 'user'
+    type = Column(String)
     description = Column(String, nullable=False)
     created_at = Column(String)

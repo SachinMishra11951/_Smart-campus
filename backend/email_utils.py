@@ -5,9 +5,9 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+# Feature: Standard Email Construction Interface
 EMAIL_ADDRESS = os.getenv("EMAIL_ADDRESS")
 EMAIL_PASSWORD = os.getenv("EMAIL_PASSWORD")
-
 
 def send_otp_email(receiver_email: str, otp: str):
     msg = EmailMessage()

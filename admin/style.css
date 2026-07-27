@@ -1,3 +1,4 @@
+/* Feature: Global UI Variables and Dark/Light Theme Switching */
 :root {
     --bg: #0a0c1a;
     --bg2: #0f1228;
@@ -52,13 +53,12 @@ body {
     transition: background 0.4s, color 0.4s;
 }
 
-/* ── MAIN APP ── */
+/* Feature: Application Shell Framework Styling */
 #app {
     display: block;
     min-height: 100vh;
 }
 
-/* SIDEBAR */
 .sidebar {
     position: fixed;
     left: 0;
@@ -253,7 +253,6 @@ body {
     color: var(--red);
 }
 
-/* HEADER */
 .header {
     position: fixed;
     left: var(--sidebar);
@@ -357,7 +356,6 @@ body {
     justify-content: center;
 }
 
-/* Theme Toggle */
 .theme-toggle {
     display: flex;
     align-items: center;
@@ -409,7 +407,6 @@ body {
     left: 20px;
 }
 
-/* MAIN CONTENT */
 .main {
     margin-left: var(--sidebar);
     padding-top: var(--header);
@@ -438,7 +435,7 @@ body {
     }
 }
 
-/* PAGE HEADER */
+/* Feature: Content and Navigation Block Aesthetics */
 .page-header {
     display: flex;
     align-items: flex-start;
@@ -524,7 +521,7 @@ body {
     font-size: 12px;
 }
 
-/* CARDS */
+/* Feature: Modular Card Interfaces for Page Data */
 .card {
     background: var(--card);
     border: 1px solid var(--border);
@@ -549,7 +546,6 @@ body {
     color: var(--accent2);
 }
 
-/* STATS ROW */
 .stats-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -634,7 +630,6 @@ body {
     color: var(--red);
 }
 
-/* GRID LAYOUTS */
 .grid-2 {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -659,7 +654,6 @@ body {
     gap: 16px;
 }
 
-/* CHARTS */
 .chart-area {
     position: relative;
     height: 200px;
@@ -670,7 +664,7 @@ canvas {
     max-width: 100%;
 }
 
-/* ACTIVITY FEED */
+/* Feature: Animated Elements for Feed and Indicators */
 .activity-list {
     display: flex;
     flex-direction: column;
@@ -743,7 +737,6 @@ canvas {
     margin-top: 2px;
 }
 
-/* PROGRESS BAR */
 .progress-container {
     margin-bottom: 16px;
 }
@@ -790,7 +783,7 @@ canvas {
     }
 }
 
-/* TABLE */
+/* Feature: Responsive Datatable Rendering */
 .table-wrapper {
     overflow-x: auto;
     margin-top: 4px;
@@ -890,7 +883,6 @@ tr:hover td {
     font-size: 11px;
 }
 
-/* FILTERS */
 .filter-bar {
     display: flex;
     gap: 10px;
@@ -952,7 +944,6 @@ tr:hover td {
     color: var(--text3);
 }
 
-/* PAGINATION */
 .pagination {
     display: flex;
     align-items: center;
@@ -989,7 +980,7 @@ tr:hover td {
     border-color: var(--accent);
 }
 
-/* CALENDAR GRID */
+/* Feature: Display System for Custom Calendar Objects */
 .cal-header {
     display: flex;
     align-items: center;
@@ -1084,7 +1075,6 @@ tr:hover td {
     cursor: default;
 }
 
-/* BOOKING CARDS */
 .booking-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -1156,7 +1146,6 @@ tr:hover td {
     background: var(--yellow);
 }
 
-/* NOTIFICATION ITEMS */
 .notif-item {
     display: flex;
     gap: 12px;
@@ -1221,7 +1210,6 @@ tr:hover td {
     box-shadow: 0 0 8px var(--accent);
 }
 
-/* PROFILE */
 .profile-header {
     display: flex;
     gap: 24px;
@@ -1279,7 +1267,6 @@ tr:hover td {
     gap: 5px;
 }
 
-/* LIVE DATA FEED */
 .live-feed {
     background: var(--bg3);
     border: 1px solid var(--border);
@@ -1332,7 +1319,6 @@ tr:hover td {
     white-space: nowrap;
 }
 
-/* TYPE ANIMATION */
 .type-cursor {
     display: inline-block;
     width: 2px;
@@ -1356,7 +1342,6 @@ tr:hover td {
     }
 }
 
-/* SCALE ANIMATION on stat cards */
 .scale-in {
     animation: scaleIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
@@ -1373,7 +1358,6 @@ tr:hover td {
     }
 }
 
-/* DONUT CHART PLACEHOLDER */
 .donut-chart {
     width: 140px;
     height: 140px;
@@ -1432,7 +1416,6 @@ tr:hover td {
     flex-shrink: 0;
 }
 
-/* TOOLTIP */
 .tooltip {
     position: relative;
 }
@@ -1459,7 +1442,7 @@ tr:hover td {
     opacity: 1;
 }
 
-/* MODAL */
+/* Feature: Global Layered Modal Control Elements */
 .modal-overlay {
     position: fixed;
     inset: 0;
@@ -1527,7 +1510,6 @@ tr:hover td {
     border-color: var(--red);
 }
 
-/* STATUS BADGE COUNT */
 .stats-mini {
     display: flex;
     gap: 8px;
@@ -1542,7 +1524,6 @@ tr:hover td {
     font-weight: 600;
 }
 
-/* SCROLLBAR */
 .main::-webkit-scrollbar {
     width: 5px;
 }
@@ -1556,7 +1537,6 @@ tr:hover td {
     border-radius: 3px;
 }
 
-/* RESPONSIVE */
 @media(max-width:900px) {
     :root {
         --sidebar: 64px;
@@ -1602,7 +1582,7 @@ tr:hover td {
         display: none;
     }
 }
-/* Password Visibility Toggle */
+
 .password-wrapper {
     position: relative;
     display: flex;
@@ -1612,7 +1592,7 @@ tr:hover td {
 
 .password-wrapper input {
     width: 100%;
-    padding-right: 40px; /* Make room for the icon */
+    padding-right: 40px; 
 }
 
 .password-toggle {

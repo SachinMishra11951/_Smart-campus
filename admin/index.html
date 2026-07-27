@@ -12,11 +12,8 @@
 </head>
 
 <body>
-
-    
-    <!-- ═══════════════ MAIN APP ═══════════════ -->
+    <!-- Feature: Application Wrapper and Sidebar Navigation -->
     <div id="app">
-        <!-- SIDEBAR -->
         <aside class="sidebar">
             <div class="sidebar-logo">
                 <div class="sidebar-logo-icon">🎓</div>
@@ -40,6 +37,7 @@
                 </div>
                 <div class="nav-item" onclick="showPage('approvals',this)">
                     <span class="nav-icon">✅</span><span>Booking Approval</span>
+                    <span class="nav-badge" id="admin-sidebar-booking-badge" style="display: none;"></span>
                 </div>
                 <div class="nav-section-label">Analytics</div>
                 <div class="nav-item" onclick="showPage('statistics',this)">
@@ -67,7 +65,7 @@
             </div>
         </aside>
 
-        <!-- HEADER -->
+        <!-- Feature: Top Header with Search and Theme Toggle -->
         <header class="header">
             <div class="header-title" id="header-title">DASHBOARD</div>
             <div class="header-search">
@@ -89,10 +87,10 @@
             </div>
         </header>
 
-        <!-- MAIN CONTENT -->
+        <!-- Feature: Main Content Area -->
         <main class="main">
 
-            <!-- ─── DASHBOARD ─── -->
+            <!-- Feature: Dashboard Overview Section -->
             <section class="page active" id="page-dashboard">
                 <div class="page-header">
                     <div class="page-header-left">
@@ -105,7 +103,6 @@
                     </div>
                 </div>
 
-                <!-- Stats -->
                 <div class="stats-grid">
                     <div class="stat-card scale-in"
                         style="--accent-color:var(--accent);--accent-bg:rgba(99,102,241,0.1);animation-delay:0s">
@@ -137,9 +134,7 @@
                     </div>
                 </div>
 
-                <!-- Charts Row -->
                 <div class="grid-2-1" style="margin-bottom:16px">
-                    <!-- Complaint Viz + Trend -->
                     <div style="display:flex;flex-direction:column;gap:16px">
                         <div class="card">
                             <div class="card-title">Complaint Visualization</div>
@@ -171,7 +166,6 @@
                         </div>
                     </div>
 
-                    <!-- Activity Feed -->
                     <div class="card" style="max-height:420px;overflow-y:auto">
                         <div class="card-title">Activity Feed <span
                                 style="float:right;font-size:11px;color:var(--green);cursor:pointer">Live ●</span></div>
@@ -179,7 +173,6 @@
                     </div>
                 </div>
 
-                <!-- System Progress & Live Feed -->
                 <div class="card" style="margin-bottom:16px">
                     <div class="card-title">System Updates in Progress</div>
                     <div id="progress-bars"></div>
@@ -192,7 +185,7 @@
                 </div>
             </section>
 
-            <!-- ─── COMPLAINT MANAGEMENT ─── -->
+            <!-- Feature: Complaint Management Interface -->
             <section class="page" id="page-complaints">
                 <div class="page-header">
                     <div class="page-header-left">
@@ -265,7 +258,7 @@
                 </div>
             </section>
 
-            <!-- ─── RESOURCE MANAGEMENT ─── -->
+            <!-- Feature: Resource Management Interface -->
             <section class="page" id="page-resources">
                 <div class="page-header">
                     <div class="page-header-left">
@@ -278,7 +271,6 @@
                         <button class="btn btn-primary btn-sm">+ Add Resource</button>
                     </div>
                 </div>
-                <!-- Calendar + Transmission -->
                 <div class="grid-2" style="margin-bottom:16px">
                     <div class="card">
                         <div class="cal-header">
@@ -303,11 +295,8 @@
                         <canvas id="transmissionChart" height="180"></canvas>
                     </div>
                 </div>
-                <!-- Resource Cards -->
                 <div id="admin-resources-container" style="display:flex;flex-direction:column;gap:16px;margin-bottom:16px;">
-                                    <!-- Live resources will be injected here -->
                 </div>               
-                <!-- Vision + PDF Generator -->
                 <div class="grid-2">
                 <div class="card">
                 <div class="card-title">⚡ Quick Actions</div>
@@ -348,8 +337,7 @@
                 </div>
             </section>
 
-
-            <!-- ─── APPROVALS ─── -->
+            <!-- Feature: Booking Approvals Interface -->
             <section class="page" id="page-approvals">
                 <div class="page-header">
                     <div class="page-header-left">
@@ -379,7 +367,7 @@
                 </div>
             </section>
 
-            <!-- ─── STATISTICS ─── -->
+            <!-- Feature: Statistics and Analytics Dashboard -->
             <section class="page" id="page-statistics">
                 <div class="page-header">
                     <div class="page-header-left">
@@ -430,7 +418,7 @@
                 </div>
             </section>
 
-            <!-- ─── NOTIFICATIONS ─── -->
+            <!-- Feature: Notifications Interface -->
             <section class="page" id="page-notifications">
                 <div class="page-header">
                     <div class="page-header-left">
@@ -445,7 +433,7 @@
                 <div id="notif-list"></div>
             </section>
 
-            <!-- ─── USERS ─── -->
+            <!-- Feature: User Management Interface -->
             <section class="page" id="page-users">
                 <div class="page-header">
                     <div class="page-header-left">
@@ -487,7 +475,7 @@
                 </div>
             </section>
 
-            <!-- ─── SETTINGS ─── -->
+            <!-- Feature: System Settings Configuration -->
             <section class="page" id="page-settings">
                 <div class="page-header">
                     <div class="page-header-left">
@@ -562,7 +550,7 @@
         </main>
     </div>
 
-    <!-- ═══════════════ MODALS ═══════════════ -->
+    <!-- Feature: Modals for System Actions -->
     <div class="modal-overlay" id="add-complaint-modal">
         <div class="modal">
             <div class="modal-header">
